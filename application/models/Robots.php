@@ -8,15 +8,19 @@
  */
 class Robots extends CI_Model {
 
-	$lineage=array(
+	var $lineage=array(
 		'household'=>array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'),
 		'butler'=>array('M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V'),
 		'companion'=>array('W', 'X', 'Y', 'Z')
 	);
 	
 	var $data = array(
-		array('id' => 'A1', 'top'=>'A','torso'=>'A','bottom'=>'A' ),
-		array('id' => 'B2',  'top'=>'B','torso'=>'B','bottom'=>'B' )
+		array('id' => '1', 'top'=>'A','torso'=>'A','bottom'=>'A', 'img' => 'a.jpg' ),
+		array('id' => '2', 'top'=>'B','torso'=>'B','bottom'=>'B', 'img' => 'b.jpg' ),
+		array('id' => '3', 'top'=>'C','torso'=>'C','bottom'=>'C', 'img' => 'c.jpg' ),
+		array('id' => '4', 'top'=>'M','torso'=>'M','bottom'=>'M', 'img' => 'm.jpg' ),
+		array('id' => '5', 'top'=>'R','torso'=>'R','bottom'=>'R', 'img' => 'r.jpg' ),
+		array('id' => '6', 'top'=>'W','torso'=>'W','bottom'=>'W', 'img' => 'w.jpg' )
 	);
 
 	// Constructor
@@ -42,13 +46,13 @@ class Robots extends CI_Model {
 	}
 
 	// retrieve all of the quotes
-	public function getLineage($robot)
-	{ 
-		foreach($lineageas $key=>$val)
-			if(in_array($robot['top'], $val)
-			 		&& in_array($robot['torso'],$val)
-			 		&& in_array($robot['bottom'],$val)
-			 	return $key;
-		return 'motley';
-	}
+	// public function getLineage($robot)
+	// { 
+	// 	foreach($lineageas $key=>$val)
+	// 		if(in_array($robot['top'], $val)
+	// 		 		&& in_array($robot['torso'],$val)
+	// 		 		&& in_array($robot['bottom'],$val)
+	// 		 	return $key;
+	// 	return 'motley';
+	// }
 }
