@@ -31,7 +31,7 @@ if (!defined('APPPATH'))
                 {content}
             </div>
             <div id="footer" class="span12">
-                Copyright &copy; 2017,  <a href="mailto:someone@somewhere.com">Me</a>.
+                Copyright &copy; 2017, Team Goji: Deric Mccadden, Brody McCrone, Eva Yu, Robert Arendac, Trista Huang.
             </div>
         </div>
         <script src="/assets/js/jquery-1.11.1.min.js"></script>
