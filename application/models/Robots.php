@@ -39,20 +39,19 @@ class Robots extends CI_Model {
 		return null;
 	}
 
-	// retrieve all of the quotes
+	// retrieve all of the robots
 	public function all()
 	{
 		return $this->data;
 	}
 
-	// retrieve all of the quotes
-	// public function getLineage($robot)
-	// { 
-	// 	foreach($lineageas $key=>$val)
-	// 		if(in_array($robot['top'], $val)
-	// 		 		&& in_array($robot['torso'],$val)
-	// 		 		&& in_array($robot['bottom'],$val)
-	// 		 	return $key;
-	// 	return 'motley';
-	// }
+	public function getLineage($robot)
+	{ 
+		foreach($lineageas as $key=>$val)
+			if(in_array($robot['top'], $val)
+			 		&& in_array($robot['torso'],$val)
+			 		&& in_array($robot['bottom'],$val))
+			 	return $key;
+		return 'motley';
+	}
 }

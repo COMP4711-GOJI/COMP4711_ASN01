@@ -17,13 +17,13 @@ class Assembly extends Application
 	{
 		// this is the view we want shown
 		$this->data['pagebody'] = 'assembly';
-		$source = $this->robots->all();
-		$robotimg = array ();
-		foreach ($source as $record)
+		//$source = $this->robots->all();
+		//$robotimg = array ();
+		/*foreach ($source as $record)
 		{
 			$robotimg[] = array ('img' => $record['img']);
-		}
-		$this->data['img'] = $robotimg;
+		}*/
+		//$this->data['img'] = $robotimg;
 		$this->render();
 	}
 
