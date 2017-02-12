@@ -2,29 +2,19 @@
 class Inventory extends CI_Model {
 
 	var $parts = array(
-		array('id' => '1',  'model' => 'a', 'part'  => '1', 'image' => 'a1.jpeg', 'cost' => '100.00', 'stock' => '21'),
-		array('id' => '2',  'model' => 'a', 'part'  => '2', 'image' => 'a2.jpeg', 'cost' => '250.00', 'stock' => '22'),
-		array('id' => '3',  'model' => 'a', 'part'  => '3', 'image' => 'a3.jpeg', 'cost' => '130.00', 'stock' => '16'),
+		array('id' => '1',  'part'  => '1', 'CACode' => '1', 'buildLoc' => 'Downtown',
+            'buildDate' => 'Feb 1st 2017', 'buildTime' => '12:00pm', 'image' => 'a1.jpeg'),
+		array('id' => '2',  'part'  => '2', 'CACode' => '2','buildLoc' => 'Downtown',
+            'buildDate' => 'Feb 1st 2017', 'buildTime' => '12:00pm',  'image' => 'a2.jpeg'),
+		array('id' => '3',  'part'  => '3', 'CACode' => '3','buildLoc' => 'Downtown',
+            'buildDate' => 'Feb 1st 2017', 'buildTime' => '12:00pm',  'image' => 'a3.jpeg'),
 
-		array('id' => '4',  'model' => 'b', 'part'  => '1', 'image' => 'b1.jpeg', 'cost' => '100.00', 'stock' => '42'),
-		array('id' => '5',  'model' => 'b', 'part'  => '2', 'image' => 'b2.jpeg', 'cost' => '260.00', 'stock' => '45'),
-		array('id' => '6',  'model' => 'b', 'part'  => '3', 'image' => 'b3.jpeg', 'cost' => '140.00', 'stock' => '47'),
-
-		array('id' => '7',  'model' => 'c', 'part'  => '1', 'image' => 'c1.jpeg', 'cost' => '110.00', 'stock' => '11'),
-		array('id' => '8',  'model' => 'c', 'part'  => '2', 'image' => 'c2.jpeg', 'cost' => '270.00', 'stock' => '7'),
-		array('id' => '9',  'model' => 'c', 'part'  => '3', 'image' => 'c3.jpeg', 'cost' => '150.00', 'stock' => '18'),
-
-		array('id' => '10', 'model' => 'm', 'part'  => '1', 'image' => 'm1.jpeg', 'cost' => '120.00', 'stock' => '31'),
-		array('id' => '11', 'model' => 'm', 'part'  => '2', 'image' => 'm2.jpeg', 'cost' => '300.00', 'stock' => '33'),
-		array('id' => '12', 'model' => 'm', 'part'  => '3', 'image' => 'm3.jpeg', 'cost' => '180.00', 'stock' => '25'),
-
-		array('id' => '13', 'model' => 'r', 'part'  => '1', 'image' => 'r1.jpeg', 'cost' => '120.00', 'stock' => '5'),
-		array('id' => '14', 'model' => 'r', 'part'  => '2', 'image' => 'r2.jpeg', 'cost' => '310.00', 'stock' => '9'),
-		array('id' => '15', 'model' => 'r', 'part'  => '3', 'image' => 'r3.jpeg', 'cost' => '180.00', 'stock' => '2'),
-
-		array('id' => '16', 'model' => 'w', 'part'  => '1', 'image' => 'w1.jpeg', 'cost' => '130.00', 'stock' => '23'),
-		array('id' => '17', 'model' => 'w', 'part'  => '2', 'image' => 'w2.jpeg', 'cost' => '320.00', 'stock' => '11'),
-		array('id' => '18', 'model' => 'w', 'part'  => '3', 'image' => 'w3.jpeg', 'cost' => '190.00', 'stock' => '17'),
+		array('id' => '4',  'part'  => '1', 'CACode' => '4','buildLoc' => 'Downtown',
+            'buildDate' => 'Feb 1st 2017', 'buildTime' => '12:00pm',  'image' => 'b1.jpeg'),
+		array('id' => '5',  'part'  => '2', 'CACode' => '5','buildLoc' => 'Downtown',
+            'buildDate' => 'Feb 1st 2017', 'buildTime' => '12:00pm',  'image' => 'b2.jpeg'),
+		array('id' => '6',  'part'  => '3', 'CACode' => '6','buildLoc' => 'Downtown',
+            'buildDate' => 'Feb 1st 2017', 'buildTime' => '12:00pm',  'image' => 'b3.jpeg')
 	);
 
 
