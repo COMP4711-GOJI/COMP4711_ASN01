@@ -16,7 +16,7 @@ class Homepage extends Application
 	public function index()
 	{
 		$this->data['pagebody'] = 'homepage';
-
+        /*
 		$inv_parts  = $this->inventory->all_parts();
 		$inv_robots = $this->inventory->all_robots();
 		$history    = $this->transactions->all();
@@ -42,15 +42,17 @@ class Homepage extends Application
 			$robot = $this->inventory->get_robot($model);
 			$total_earned += ($amount * $robot['retail']);
 		}
+        */
 
 
 //$authors[] = array ('who' => $record['who'], 'mug' => $record['mug'], 'href' => $record['where']);
 
+        /*
 		$this->data['total_assembled'] = $total_assembled;
 		$this->data['total_parts']     = $total_parts;
 		$this->data['total_spent']     = $total_spent;
 		$this->data['total_earned']    = $total_earned;
-
+*/
 		$this->render();
 	}
 
