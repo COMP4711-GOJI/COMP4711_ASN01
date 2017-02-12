@@ -8,12 +8,12 @@
 class Transactions extends CI_Model {
 	// Purchases table, includes item purchased and date of purchase
 	var $purchase = array(
-		array('id' => '1', 'item' => 'top', 	'date' => '05/01/2017', 'time' => '15:30'),
-		array('id' => '2', 'item' => 'top', 	'date' => '23/01/2017', 'time' => '12:00'),
-		array('id' => '3', 'item' => 'bottom',  'date' => '01/01/2017', 'time' => '16:45'),
-		array('id' => '4', 'item' => 'torso',   'date' => '02/02/2017', 'time' => '09:10'),
-		array('id' => '5', 'item' => 'bottom', 	'date' => '21/12/2016', 'time' => '13:25'),
-		array('id' => '6', 'item' => 'torso', 	'date' => '09/02/2017', 'time' => '14:55')
+		array('p_id' => '1', 'r_id' => '5', 'item' => 'top', 	 'date' => '05/01/2017', 'time' => '15:30'),
+		array('p_id' => '2', 'r_id' => '3', 'item' => 'top', 	 'date' => '23/01/2017', 'time' => '12:00'),
+		array('p_id' => '3', 'r_id' => '1', 'item' => 'bottom',  'date' => '01/01/2017', 'time' => '16:45'),
+		array('p_id' => '4', 'r_id' => '2', 'item' => 'torso',   'date' => '02/02/2017', 'time' => '09:10'),
+		array('p_id' => '5', 'r_id' => '4', 'item' => 'bottom',  'date' => '21/12/2016', 'time' => '13:25'),
+		array('p_id' => '6', 'r_id' => '6', 'item' => 'torso',   'date' => '09/02/2017', 'time' => '14:55')
 	);
 
 	// Assemblies table, includes piece id, action performed, and date of assembly
@@ -47,7 +47,7 @@ class Transactions extends CI_Model {
 	{
 		foreach ($this->purchase as $record) 
 		{
-			if ($record['id'] == $which)
+			if ($record['p_id'] == $which)
 				return $record;
 		}
 

@@ -19,7 +19,7 @@ class Homepage extends Application
         
 		$parts   = $this->inventory->all_parts();
 		$robots  = $this->robots->all();
-		$history = $this->transactions->all();
+		$history = $this->transactions->allPurchase();
 
 		$total_assembled = sizeof($robots);
 		$total_parts     = sizeof($parts);
@@ -33,8 +33,8 @@ class Homepage extends Application
 		}
 		foreach ($history as $item)
 		{
-			$id = $item['rid'];
-			$robot = $robots[$id];
+			$id = $item['r_id'];
+			$robot = $this->robots->get($id);
 			$total_earned += $robot['retail'];
 		}
                 
