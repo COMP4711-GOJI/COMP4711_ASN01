@@ -12,6 +12,10 @@ class Parts extends Application
 
     /**
      * Parts page for our app
+     *
+     * Displays images of all parts in a 3 x N/3 table where N is the number
+     * of parts. Also displays the model and line of each part, and links
+     * the image to a page with more detailed info on that part.
      */
     public function index()
     {
@@ -24,18 +28,14 @@ class Parts extends Application
             return $item2['id'] < $item1['id'];
         });
         */
-
+        $colCount = 0;
         $print = '<div>';
-        $print .= '<table class="table">';
-        $print .= '<tr>';
-        $print .= '<th>Model</th>';
-        $print .= '<th>Line</th>';
-        $print .= '<th>Image</th>';
-        $print .= '</tr>';
+        $print .= '<table class="table"><tr>';
         foreach ($inv_parts as $item) {
-            $print .= '<tr>';
-            $print .= '<td>' . 'ADD MODEL' . '</td>';
-            $print .= '<td>' . 'ADD LINE' . '</td>';
+            if($colCount == 3) {
+                $print .= '</tr><tr>';
+                $colCount = 0;
+            }
             $print .= '<td>';
             $print .= '<a href="./part/';
             $print .= $item['id'];
@@ -43,12 +43,14 @@ class Parts extends Application
             $print .= '<img src="assets/images/parts/';
             $print .= $item['image'];
             $print .= '"></img>';
-            $print .= '</br>details...';
             $print .= '</a>';
+            $print .= '</br>Model: ' . $this->inventory->get_part_modelline($item['part'])['model'];
+            $print .= '</br>Line: ' . $this->inventory->get_part_modelline($item['part'])['line'];
             $print .= '</td>';
-            $print .= '</tr>';
+
+            $colCount++;
         }
-        $print .= '</table>';
+        $print .= '</tr></table>';
         $print .= '</div>';
 
         $this->data['parts_table'] = $print;
@@ -56,6 +58,14 @@ class Parts extends Application
         $this->render();
     }
 
+    /**
+     * @param $id The id of the part you want to display info for.
+     *
+     * Displays details of part specified by id paramater. Displays
+     * details in a single row table. Details include id, part code,
+     * Certificate of authenticity code, build location, and
+     * build time.
+     */
     public function part($id) {
         $this->data['pagebody'] = 'part';
 
@@ -68,7 +78,7 @@ class Parts extends Application
         $print .=    '<table class ="table">';
         $print .=        '<tr>';
         $print .=            '<th>Unique ID</th><th>Part Code</th><th>CA Code</th>';
-        $print .=            '<th>Build At</th><th>Build Date</th><th>Build Time</th>';
+        $print .=            '<th>Built At</th><th>Build Date</th><th>Build Time</th>';
         $print .=        '</tr>';
         $print .=        '<tr>';
         $print .=            '<td>' . $part["id"] . '</td>';
