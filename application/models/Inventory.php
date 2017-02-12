@@ -3,18 +3,18 @@ class Inventory extends CI_Model {
 
 	var $parts = array(
 		array('id' => '1',  'part'  => '1', 'CACode' => '1', 'buildLoc' => 'Downtown',
-            'buildDate' => 'Feb 1st 2017', 'buildTime' => '12:00pm', 'image' => 'a1.jpeg'),
+            'buildDate' => 'Feb 1st 2017', 'buildTime' => '12:00pm',  'image' => 'a1.jpeg', 'cost' => '30.00'),
 		array('id' => '2',  'part'  => '2', 'CACode' => '2','buildLoc' => 'Downtown',
-            'buildDate' => 'Feb 1st 2017', 'buildTime' => '12:00pm',  'image' => 'a2.jpeg'),
+            'buildDate' => 'Feb 1st 2017', 'buildTime' => '12:00pm',  'image' => 'a2.jpeg', 'cost' => '120.00'),
 		array('id' => '3',  'part'  => '3', 'CACode' => '3','buildLoc' => 'Downtown',
-            'buildDate' => 'Feb 1st 2017', 'buildTime' => '12:00pm',  'image' => 'a3.jpeg'),
+            'buildDate' => 'Feb 1st 2017', 'buildTime' => '12:00pm',  'image' => 'a3.jpeg', 'cost' => '60.00'),
 
 		array('id' => '4',  'part'  => '1', 'CACode' => '4','buildLoc' => 'Downtown',
-            'buildDate' => 'Feb 1st 2017', 'buildTime' => '12:00pm',  'image' => 'b1.jpeg'),
+            'buildDate' => 'Feb 1st 2017', 'buildTime' => '12:00pm',  'image' => 'b1.jpeg', 'cost' => '40.00'),
 		array('id' => '5',  'part'  => '2', 'CACode' => '5','buildLoc' => 'Downtown',
-            'buildDate' => 'Feb 1st 2017', 'buildTime' => '12:00pm',  'image' => 'b2.jpeg'),
+            'buildDate' => 'Feb 1st 2017', 'buildTime' => '12:00pm',  'image' => 'b2.jpeg', 'cost' => '130.00'),
 		array('id' => '6',  'part'  => '3', 'CACode' => '6','buildLoc' => 'Downtown',
-            'buildDate' => 'Feb 1st 2017', 'buildTime' => '12:00pm',  'image' => 'b3.jpeg')
+            'buildDate' => 'Feb 1st 2017', 'buildTime' => '12:00pm',  'image' => 'b3.jpeg', 'cost' => '70.00')
 	);
 
     var $partsModelLine = array(
@@ -22,34 +22,6 @@ class Inventory extends CI_Model {
         array('part' => '2', 'model' => 'b', 'line' => 'household'),
         array('part' => '2', 'model' => 'c', 'line' => 'household'),
     );
-
-
-	var $robots = array(
-		array('model' => 'aaa',  'head' => 'a', 'torso'  => 'a', 'legs' => 'a', 'retail' => '700.00', 'stock' => '21'),
-		array('model' => 'bbb',  'head' => 'b', 'torso'  => 'b', 'legs' => 'b', 'retail' => '750.00', 'stock' => '11'),
-		array('model' => 'ccc',  'head' => 'c', 'torso'  => 'c', 'legs' => 'c', 'retail' => '800.00', 'stock' => '31'),
-		array('model' => 'mmm',  'head' => 'm', 'torso'  => 'm', 'legs' => 'm', 'retail' => '850.00', 'stock' => '23'),
-		array('model' => 'rrr',  'head' => 'r', 'torso'  => 'r', 'legs' => 'r', 'retail' => '900.00', 'stock' => '3'),
-		array('model' => 'www',  'head' => 'w', 'torso'  => 'w', 'legs' => 'w', 'retail' => '950.00', 'stock' => '9'),
-		array('model' => 'abc',  'head' => 'a', 'torso'  => 'b', 'legs' => 'c', 'retail' => '800.00', 'stock' => '5'),
-		array('model' => 'arw',  'head' => 'a', 'torso'  => 'r', 'legs' => 'w', 'retail' => '850.00', 'stock' => '8'),
-		array('model' => 'abw',  'head' => 'a', 'torso'  => 'b', 'legs' => 'w', 'retail' => '870.00', 'stock' => '12'),
-		array('model' => 'bac',  'head' => 'b', 'torso'  => 'a', 'legs' => 'c', 'retail' => '920.00', 'stock' => '21'),
-		array('model' => 'brw',  'head' => 'b', 'torso'  => 'r', 'legs' => 'w', 'retail' => '710.00', 'stock' => '1'),
-		array('model' => 'baw',  'head' => 'b', 'torso'  => 'a', 'legs' => 'w', 'retail' => '810.00', 'stock' => '2'),
-		array('model' => 'cab',  'head' => 'c', 'torso'  => 'a', 'legs' => 'b', 'retail' => '860.00', 'stock' => '6'),
-		array('model' => 'crw',  'head' => 'c', 'torso'  => 'r', 'legs' => 'w', 'retail' => '860.00', 'stock' => '7'),
-		array('model' => 'caw',  'head' => 'c', 'torso'  => 'a', 'legs' => 'w', 'retail' => '850.00', 'stock' => '2'),
-		array('model' => 'mab',  'head' => 'm', 'torso'  => 'a', 'legs' => 'b', 'retail' => '910.00', 'stock' => '5'),
-		array('model' => 'mrw',  'head' => 'm', 'torso'  => 'r', 'legs' => 'w', 'retail' => '940.00', 'stock' => '8'),
-		array('model' => 'mmw',  'head' => 'm', 'torso'  => 'm', 'legs' => 'w', 'retail' => '670.00', 'stock' => '2'),
-		array('model' => 'rac',  'head' => 'r', 'torso'  => 'a', 'legs' => 'c', 'retail' => '830.00', 'stock' => '6'),
-		array('model' => 'rww',  'head' => 'r', 'torso'  => 'w', 'legs' => 'w', 'retail' => '880.00', 'stock' => '17'),
-		array('model' => 'rmw',  'head' => 'r', 'torso'  => 'm', 'legs' => 'w', 'retail' => '890.00', 'stock' => '12'),
-		array('model' => 'wab',  'head' => 'w', 'torso'  => 'a', 'legs' => 'b', 'retail' => '790.00', 'stock' => '2'),
-		array('model' => 'wrm',  'head' => 'w', 'torso'  => 'r', 'legs' => 'm', 'retail' => '740.00', 'stock' => '9'),
-		array('model' => 'wma',  'head' => 'w', 'torso'  => 'm', 'legs' => 'a', 'retail' => '750.00', 'stock' => '7'),
-	);
 
 
 	// Constructor
@@ -107,25 +79,6 @@ class Inventory extends CI_Model {
 	public function all_parts()
 	{
 		return $this->parts;
-	}
-
-
-
-
-	// retrieve a single quote
-	public function get_robot($model)
-	{
-		// iterate over the data until we find the one we want
-		foreach ($this->robots as $record)
-			if ($record['model'] == $model)
-				return $record;
-		return null;
-	}
-
-	// retrieve all of the quotes
-	public function all_robots()
-	{
-		return $this->robots;
 	}
 
 }
