@@ -15,12 +15,12 @@ class Robots extends CI_Model {
 	);
 	
 	var $data = array(
-		array('id' => '1', 'top'=>'A','torso'=>'A','bottom'=>'A', 'img' => 'a.jpg' ),
-		array('id' => '2', 'top'=>'B','torso'=>'B','bottom'=>'B', 'img' => 'b.jpg' ),
-		array('id' => '3', 'top'=>'C','torso'=>'C','bottom'=>'C', 'img' => 'c.jpg' ),
-		array('id' => '4', 'top'=>'M','torso'=>'M','bottom'=>'M', 'img' => 'm.jpg' ),
-		array('id' => '5', 'top'=>'R','torso'=>'R','bottom'=>'R', 'img' => 'r.jpg' ),
-		array('id' => '6', 'top'=>'W','torso'=>'W','bottom'=>'W', 'img' => 'w.jpg' )
+		array('id' => '1', 'model'=>'AAA', 'top'=>'A','torso'=>'A','bottom'=>'A', 'img' => 'a.jpg', 'retail' => '800.00'),
+		array('id' => '2', 'model'=>'BBB', 'top'=>'B','torso'=>'B','bottom'=>'B', 'img' => 'b.jpg', 'retail' => '850.00'),
+		array('id' => '3', 'model'=>'CCC', 'top'=>'C','torso'=>'C','bottom'=>'C', 'img' => 'c.jpg', 'retail' => '890.00'),
+		array('id' => '4', 'model'=>'MMM', 'top'=>'M','torso'=>'M','bottom'=>'M', 'img' => 'm.jpg', 'retail' => '910.00'),
+		array('id' => '5', 'model'=>'RRR', 'top'=>'R','torso'=>'R','bottom'=>'R', 'img' => 'r.jpg', 'retail' => '920.00'),
+		array('id' => '6', 'model'=>'WWW', 'top'=>'W','torso'=>'W','bottom'=>'W', 'img' => 'w.jpg', 'retail' => '980.00')
 	);
 
 	// Constructor
