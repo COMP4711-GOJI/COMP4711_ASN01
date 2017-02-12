@@ -57,3 +57,4 @@ $route['about']    = 'About';
 $route['parts']    = 'Parts';
 $route['assembly'] = 'Assembly';
 $route['history']  = 'History';
+$route['part/(:num)'] = 'Parts/part/$1';

@@ -39,7 +39,9 @@
 	
 .owl-carousel .owl-item{
 	float: left;
+	position: relative;
 }
+
 .owl-controls .owl-page,
 .owl-controls .owl-buttons div{
 	cursor: pointer;
@@ -52,6 +54,7 @@
 	user-select: none;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+
 
 /* mouse grab icon */
 .grabbing { 
@@ -69,3 +72,19 @@
   -ms-transform: translate3d(0,0,0);
 }
 
+/***************
+PERSONALIZED
+**************/
+.btn-radio {
+	width: 100%;
+}
+
+.img-radio {
+	opacity: 0.5;
+	margin-bottom: 5px;
+}
+
+img.thumbnail 
+{
+    margin-top: 20px;
+}
