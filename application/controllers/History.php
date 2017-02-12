@@ -29,7 +29,7 @@ class History extends Application
 		$purchases = array();
 		foreach ($p_source as $record)
 		{
-			$purchases[] = array('p_id' => $record['id'], 'item' => $record['item'], 'p_date' => $record['date'], 'p_time' => $record['time']);
+			$purchases[] = array('p_id' => $record['p_id'], 'item' => $record['item'], 'p_date' => $record['date'], 'p_time' => $record['time']);
 		}
 
 		// Builds the list of assemblies to be displayed
