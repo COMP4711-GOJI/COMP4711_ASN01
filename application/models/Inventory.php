@@ -17,6 +17,12 @@ class Inventory extends CI_Model {
             'buildDate' => 'Feb 1st 2017', 'buildTime' => '12:00pm',  'image' => 'b3.jpeg')
 	);
 
+    var $partsModelLine = array(
+        array('part' => '1', 'model' => 'a', 'line' => 'household'),
+        array('part' => '2', 'model' => 'b', 'line' => 'household'),
+        array('part' => '2', 'model' => 'c', 'line' => 'household'),
+    );
+
 
 	var $robots = array(
 		array('model' => 'aaa',  'head' => 'a', 'torso'  => 'a', 'legs' => 'a', 'retail' => '700.00', 'stock' => '21'),
@@ -52,7 +58,6 @@ class Inventory extends CI_Model {
 		parent::__construct();
 	}
 
-	// retrieve a single quote
 	public function get_part($id)
 	{
 		// iterate over the data until we find the one we want
@@ -61,6 +66,7 @@ class Inventory extends CI_Model {
 				return $record;
 		return null;
 	}
+
 
 	public function get_part_mp($model, $part)
 	{
@@ -71,7 +77,33 @@ class Inventory extends CI_Model {
 		return null;
 	}
 
-	// retrieve all of the quotes
+    /**
+     * @param $partCode The code of the part you want model line info on.
+     * @return mixed|null If there is a part with that code, its info is
+     *     returned in assoc array containing part code, model, and line.
+     *     If there isn't, null is returned.
+     *
+     * Retrieves the model and line of a part specified by the partCode
+     * parameter. Data is returned in the form of an assoc array, containing
+     * part code, model, and line.
+     */
+	public function get_part_modelline($partCode) {
+        foreach ($this->partsModelLine as $part) {
+            if($part['part'] = $partCode) {
+                return $part;
+            }
+        }
+        return null;
+    }
+
+
+    /**
+     * @return array An assoc containing info on every part. Info includes
+     *     unique id, part code, certificate of authenticity code, build
+     *     location, build data, and build time.
+     *
+     * Returns all info on parts.
+     */
 	public function all_parts()
 	{
 		return $this->parts;
