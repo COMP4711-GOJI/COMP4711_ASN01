@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Controller for the Home page.  Lists important information. 
+ * @author DericM
+ */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Homepage extends Application

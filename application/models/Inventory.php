@@ -1,4 +1,13 @@
 <?php
+
+/*
+ *
+ * This is a model to represent the parts in inventory
+ *
+ * @DericM
+ */
+
+
 class Inventory extends CI_Model {
 
 	var $parts = array(
@@ -37,19 +46,8 @@ class Inventory extends CI_Model {
 
 	public function get_part($id)
 	{
-		// iterate over the data until we find the one we want
 		foreach ($this->parts as $record)
 			if ($record['id'] == $id)
-				return $record;
-		return null;
-	}
-
-
-	public function get_part_mp($model, $part)
-	{
-		// iterate over the data until we find the one we want
-		foreach ($this->parts as $record)
-			if ($record['model'] == $model && $record['part'] == $part)
 				return $record;
 		return null;
 	}
