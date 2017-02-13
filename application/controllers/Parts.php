@@ -29,14 +29,13 @@ class Parts extends Application
         });
         */
         $colCount = 0;
-        $print = '<div>';
-        $print .= '<table class="table"><tr>';
+        $print = '<div class="row">';
         foreach ($inv_parts as $item) {
             if($colCount == 3) {
-                $print .= '</tr><tr>';
+                $print .= '</div><div class="row">';
                 $colCount = 0;
             }
-            $print .= '<td>';
+            $print .= '<div class="col-lg-4 col-sm-6 col-xs-12">';
             $print .= '<a href="./part/';
             $print .= $item['id'];
             $print .= '">';
@@ -46,11 +45,11 @@ class Parts extends Application
             $print .= '</a>';
             $print .= '</br>Model: ' . $this->inventory->get_part_modelline($item['part'])['model'];
             $print .= '</br>Line: ' . $this->inventory->get_part_modelline($item['part'])['line'];
-            $print .= '</td>';
+            $print .= '</br></td>';
+            $print .= '</div>';
 
             $colCount++;
         }
-        $print .= '</tr></table>';
         $print .= '</div>';
 
         $this->data['parts_table'] = $print;
