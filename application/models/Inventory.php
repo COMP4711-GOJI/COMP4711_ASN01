@@ -1,4 +1,13 @@
 <?php
+
+/*
+ *
+ * This is a model to represent the parts in inventory
+ *
+ * @DericM
+ */
+
+
 class Inventory extends CI_Model {
 
 	var $parts = array(
@@ -14,13 +23,18 @@ class Inventory extends CI_Model {
 		array('id' => '5',  'part'  => '2', 'CACode' => '5','buildLoc' => 'Downtown',
             'buildDate' => 'Feb 1st 2017', 'buildTime' => '12:00pm',  'image' => 'b2.jpeg', 'cost' => '130.00'),
 		array('id' => '6',  'part'  => '3', 'CACode' => '6','buildLoc' => 'Downtown',
-            'buildDate' => 'Feb 1st 2017', 'buildTime' => '12:00pm',  'image' => 'b3.jpeg', 'cost' => '70.00')
+            'buildDate' => 'Feb 1st 2017', 'buildTime' => '12:00pm',  'image' => 'b3.jpeg', 'cost' => '70.00'),
+
+        array('id' => '7',  'part'  => '2', 'CACode' => '7','buildLoc' => 'Downtown',
+            'buildDate' => 'Feb 1st 2017', 'buildTime' => '12:00pm',  'image' => 'c1.jpeg', 'cost' => '130.00'),
+		array('id' => '8',  'part'  => '3', 'CACode' => '8','buildLoc' => 'Downtown',
+            'buildDate' => 'Feb 1st 2017', 'buildTime' => '12:00pm',  'image' => 'c2.jpeg', 'cost' => '70.00')
 	);
 
     var $partsModelLine = array(
         array('part' => '1', 'model' => 'a', 'line' => 'household'),
         array('part' => '2', 'model' => 'b', 'line' => 'household'),
-        array('part' => '2', 'model' => 'c', 'line' => 'household'),
+        array('part' => '3', 'model' => 'c', 'line' => 'household'),
     );
 
 
@@ -32,19 +46,8 @@ class Inventory extends CI_Model {
 
 	public function get_part($id)
 	{
-		// iterate over the data until we find the one we want
 		foreach ($this->parts as $record)
 			if ($record['id'] == $id)
-				return $record;
-		return null;
-	}
-
-
-	public function get_part_mp($model, $part)
-	{
-		// iterate over the data until we find the one we want
-		foreach ($this->parts as $record)
-			if ($record['model'] == $model && $record['part'] == $part)
 				return $record;
 		return null;
 	}
@@ -61,7 +64,7 @@ class Inventory extends CI_Model {
      */
 	public function get_part_modelline($partCode) {
         foreach ($this->partsModelLine as $part) {
-            if($part['part'] = $partCode) {
+            if($part['part'] == $partCode) {
                 return $part;
             }
         }

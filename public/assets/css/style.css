@@ -966,3 +966,35 @@ a {
 	color: white;
 	font-weight: 600;
 }
+
+
+/***********************************
+PERSONALIZED FOR ASSEMBLY PAGE BUTTONS 
+**********************************/
+.btn-radio-sellbot
+{
+    width: 100%;
+    background-color: #006672;
+}
+
+.btn-radio-selectpart{
+    width: 50%;
+    float: right;
+    background-color: #457300;
+}
+
+.btn-radio-sellpart{
+    width: 50%;
+    float: left;
+    background-color: #006672;
+}
+
+.img-radio {
+    opacity: 0.5;
+    margin-bottom: 5px;
+}
+
+img.thumbnail 
+{
+    margin-top: 20px;
+}

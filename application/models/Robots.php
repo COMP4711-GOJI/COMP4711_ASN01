@@ -8,12 +8,14 @@
  */
 class Robots extends CI_Model {
 
+	//Lineage groups
 	var $lineage=array(
 		'household'=>array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'),
 		'butler'=>array('M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V'),
 		'companion'=>array('W', 'X', 'Y', 'Z')
 	);
 	
+	//Dummy Robot data
 	var $data = array(
 		array('id' => '1', 'model'=>'AAA', 'top'=>'A','torso'=>'A','bottom'=>'A', 'img' => 'a.jpg', 'retail' => '800.00'),
 		array('id' => '2', 'model'=>'BBB', 'top'=>'B','torso'=>'B','bottom'=>'B', 'img' => 'b.jpg', 'retail' => '850.00'),
@@ -45,6 +47,7 @@ class Robots extends CI_Model {
 		return $this->data;
 	}
 
+	//get lineage of a robot 
 	public function getLineage($robot)
 	{ 
 		foreach($lineageas as $key=>$val)

@@ -1,7 +1,22 @@
 <?php
 
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+/*--------------------------------------------------------------------------
+-- Controller: Assmebly
+--
+-- DATE: Feb. 11, 2017
+--
+-- REVISIONS: 
+-- Version 1.0 - [DM] - 2016/Feb/11 - created base
+-- Version 1.0 - [EY] - 2016/Feb/11 - added the grid structure 
+--
+-- DESIGNER: Eva Yu
+--
+-- PROGRAMMER: Eva Yu
+--
+-- NOTES:
+-- This controller fills out the Robot Assembly Page of the WebApp
+--------------------------------------------------------------------------*/
 class Assembly extends Application
 {
 
@@ -11,7 +26,7 @@ class Assembly extends Application
 	}
 
 	/**
-	 * Homepage for our app
+	 * Assembly for our app
 	 */
 	public function index()
 	{
