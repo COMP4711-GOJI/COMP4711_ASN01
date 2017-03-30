@@ -99,6 +99,12 @@ class Transactions extends CI_Model {
 	// Returns all data in the form of an array composed of the three tables.
 	public function getAll()
 	{
-		return array('purchases' => $purchase, 'assemblies' => $assembly, 'shipments' => $assembly);
+		return array('purchases' => $this->purchase, 'assemblies' => $this->assembly,
+			'shipments' => $this->shipment);
+	}
+
+	public function size()
+	{
+		return (count($this->purchase) + count($this->assembly) + count($this->shipment));
 	}
 }
