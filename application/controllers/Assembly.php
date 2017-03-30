@@ -35,18 +35,27 @@ class Assembly extends Application
 		$robots = $this->robots->all();
 		$parts = $this->inventory->all_parts();
 
-		foreach ($robots as $robotpart) 
+		foreach ($parts as $top) 
 		{
-			$robotgallery[] = array( 'robotimg' => $robotpart['img'] );
+			if($top['part'] == 1)
+				$topgallery[] = array( 'robotpartimg' => $top['image'] , 'topid' => $top['CACode']);
 		}
 
-		foreach ($parts as $robotpart) 
+		foreach ($parts as $torso) 
 		{
-			$partsgallery[] = array( 'robotpartimg' => $robotpart['image'] );
+			if($torso['part'] == 2)
+				$torsogallery[] = array( 'robotpartimg' => $torso['image'] , 'torsoid' => $top['CACode']);
+		}
+
+		foreach ($parts as $legs) 
+		{
+			if($legs['part'] == 3)
+				$legsgallery[] = array( 'robotpartimg' => $legs['image'] , 'legsid' => $top['CACode']);
 		}
 		
-		$this->data['assembly_gallery'] = $robotgallery ;
-		$this->data['assembly_gallery'] = $partsgallery ;
+		$this->data['assembly_gallery_top'] = $topgallery;
+		$this->data['assembly_gallery_torso'] = $torsogallery;
+		$this->data['assembly_gallery_legs'] = $legsgallery;
 		$this->render();
 	}
 
