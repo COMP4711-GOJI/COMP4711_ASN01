@@ -67,7 +67,13 @@ class Assembly extends Application
 			// 	$legsgallery[] = array( 'robotpartimg' => $part['image'] , 'legsid' => $part['CACode']);
 
 		}
-
+		
+		if(empty($topgallery))
+			$topgallery[] = array( 'robotpartimg' => 'ofs' , 'topid' => '-1');
+		if(empty($torsogallery))
+			$torsogallery[] = array( 'robotpartimg' => 'ofs' , 'topid' => '-1');
+		if(empty($legsgallery)){}
+			$legsgallery[] = array( 'robotpartimg' => 'ofs' , 'topid' => '-1');
 		$this->data['assembly_gallery_top'] = $topgallery;
 		$this->data['assembly_gallery_torso'] = $torsogallery;
 		$this->data['assembly_gallery_legs'] = $legsgallery;

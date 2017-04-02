@@ -78,21 +78,11 @@
 			    legs = legsset[i].id;       
 			}
 		}
-		if(top != undefined && torso != undefined && legs != undefined )
+		if(top != undefined && torso != undefined && legs != undefined 
+			&& top != '-1' && torso != '-1' && legs != '-1')
 		{
 			window.location = './assembly/assemblebot/' + top + '/' + torso + '/' + legs;
 		}
-
-		 // $.ajax({
-			// type: "POST",
-			// url: "" + '/assembly/assemblebot/' + top + '/' + torso + '/' + legs,
-			//  // path to the controller             
-			// 	success: function(data){        
-			// 		console.log("Data sent to server");
-			// 		confirm("You have successfully logged in with FB");
-			// 		window.location.reload();       
-			// 	}
-			// });
     });
   });
   // function assemblebotbuttonaction(){
