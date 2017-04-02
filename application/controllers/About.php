@@ -1,6 +1,6 @@
 <?php
 /**
- * Controller for the About page.  Displays a disription about the company.
+ * Controller for the About page.  Displays a discription about the company.
  * @author DericM
  */
 
@@ -19,7 +19,6 @@ class About extends Application
 	 */
 	public function index()
 	{
-		// this is the view we want shown
 		$this->data['pagebody'] = 'about';
 		$this->render();
 	}
