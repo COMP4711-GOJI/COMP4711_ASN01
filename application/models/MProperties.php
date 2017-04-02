@@ -25,17 +25,17 @@ class MProperties extends MY_Model {
        $this->update($record);
    }
 
-   // public function updateurl($team, $baseurl){
-   //     $record = $this->get($team);
-   //     $record->baseurl = $baseurl;
+   public function updateurl($team, $baseurl){
+       $record = $this->get($team);
+       $record->baseurl = $baseurl;
 
-   //     $this->update($record);
-   // }
+       $this->update($record);
+   }
 
-   // public function getUrl($team){
-   //      $record = $this->get($team);
-   //     return $record->baseurl;
-   // }
+   public function getUrl($team){
+        $record = $this->get($team);
+       return $record->baseurl;
+   }
 
    public function getApiKey(){
        $team = $GLOBALS['team'];
@@ -113,14 +113,14 @@ class MProperties extends MY_Model {
 
 
    private function server_fetch_key($catagory, $command, $apikey){
-        // $baseurl = $GLOBALS['baseurl'];
-       $result = file_get_contents('https://umbrella.jlparry.com/' . $catagory .'/' . $command . '?key=' . $apikey);
+        $baseurl = $this->getUrl('goji');
+       $result = file_get_contents('' . $baseurl . $catagory .'/' . $command . '?key=' . $apikey);
        return $result;
    }
 
    private function server_fetch_param($catagory, $command, $param1 = null, $param2 = null, $param3 = null){
-        // $baseurl = $GLOBALS['baseurl'];
-       $querry = 'https://umbrella.jlparry.com/' . $catagory . '/'. $command;
+        $baseurl = $this->getUrl('goji');
+       $querry = '' . $baseurl . $catagory . '/'. $command;
        if($param1 != null){
            $querry .= '/';
            $querry .= $param1;

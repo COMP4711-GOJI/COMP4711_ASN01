@@ -35,6 +35,10 @@
 			<h3>Configuration</h3>
 			<form role="form" action="/manage/config" method="post">
 				<div class="form-group">
+				<label for="plantname1">Plant Name:</label>
+					<input type="text" class="form-control" name="plantname1" id="plantname1">
+				</div>
+				<div class="form-group">
 				<label for="baseurl">Base URL for PRC:</label>
 					<input type="text" class="form-control" name="baseurl" id="baseurl" value="<?php echo $GLOBALS['baseurl'] ?>">
 				</div>

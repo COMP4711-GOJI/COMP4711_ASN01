@@ -49,8 +49,10 @@ class Manage extends Application
 	}
 
 	function config(){		
+		$team = $_POST['plantname1'];
 		$baseurl = $_POST['baseurl'];
-		$this->mproperties->registerme($team, $baseurl);
+		$GLOBALS['baseurl'] = $baseurl;
+		$this->mproperties->updateurl($team, $baseurl);
     	redirect('/manage');
 	}
 }
