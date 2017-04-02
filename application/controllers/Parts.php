@@ -10,6 +10,7 @@ class Parts extends Application
 		parent::__construct();
 	}
 
+
     /**
      * Parts page for our app
      *
@@ -22,12 +23,13 @@ class Parts extends Application
         // this is the view we want shown
         $this->data['pagebody'] = 'parts';
 
+/*
         $inv_parts = $this->inventory->all_parts();
-        /*
-        usort($parts, function ($item1, $item2) {
-            return $item2['id'] < $item1['id'];
-        });
-        */
+        
+        // usort($parts, function ($item1, $item2) {
+        //     return $item2['id'] < $item1['id'];
+        // });
+        
         $colCount = 0;
         $print = '<div class="row">';
         foreach ($inv_parts as $item) {
@@ -53,9 +55,13 @@ class Parts extends Application
         $print .= '</div>';
 
         $this->data['parts_table'] = $print;
+*/
 
         $this->render();
     }
+
+
+
 
     /**
      * @param $id The id of the part you want to display info for.
@@ -68,11 +74,13 @@ class Parts extends Application
     public function part($id) {
         $this->data['pagebody'] = 'part';
 
-        $part = $this->inventory->get_part($id);
         /*
-        ay('id' => '1',  'part'  => '1', 'CACode' => '1', 'buildLoc' => 'Downtown',
-            'buildDate' => 'Feb 1st 2017', 'buildTime' => '12:00pm'
-        */
+
+        $part = $this->inventory->get_part($id);
+        
+        // ay('id' => '1',  'part'  => '1', 'CACode' => '1', 'buildLoc' => 'Downtown',
+        //     'buildDate' => 'Feb 1st 2017', 'buildTime' => '12:00pm'
+       
         $print = '<div>';
         $print .=    '<table class ="table">';
         $print .=        '<tr>';
@@ -93,6 +101,7 @@ class Parts extends Application
 
         $this->data['part_table'] = $print;
 
+*/
         $this->render();
     }
 }

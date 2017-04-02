@@ -32,8 +32,7 @@ class Assembly extends Application
 	public function index()
 	{
 		$this->data['pagebody'] = 'assembly';
-		
-		$robots = $this->robots->all();
+
 		$parts = $this->inventory->all_parts();
 
 		foreach ($parts as $top) 
