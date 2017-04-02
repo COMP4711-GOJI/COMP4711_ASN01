@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class History extends Application
 {
 
-	private $items_per_page = 1;
+	private $items_per_page = 15;
 
 	// Default constructor
 	function __construct()
@@ -54,10 +54,27 @@ class History extends Application
 	}
 
 	// Extract & handle a page of items, defaulting to the beginning
-	function page($num = 1)
+	function page($num = 1, $sort = null, $table = null)
 	{
-	    $partRecords = $this->mphistory->all(); // get all the tasks
-	    $robotRecords = $this->mrhistory->all();
+		if (isset($sort) && isset($table))
+		{
+			if (strcmp($table, "robots"))
+			{
+	    		$robotRecords = $this->mrhistory->sort($sort);
+	    		$partRecords = $this->mphistory->all();
+			}
+			else
+			{
+				$partRecords = $this->mphistory->sort($sort); // get all the tasks
+				$robotRecords = $this->mrhistory->all();
+			}
+		}
+		else
+		{
+			$partRecords = $this->mphistory->all(); // get all the tasks
+	    	$robotRecords = $this->mrhistory->all();
+		}
+	    
 	    $history = array(); // start with an empty extract
 
 	    // use a foreach loop, because the record indices may not be sequential
@@ -93,6 +110,7 @@ class History extends Application
 		    }
 		}
 
+		$this->data['page'] = $num;
 	    $this->data['pagination'] = $this->pagenav($num);
 	    $this->show_page($pHistories, $rHistories);
 	}
