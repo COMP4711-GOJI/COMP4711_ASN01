@@ -12,7 +12,7 @@
 	<h3>Top Parts</h3>
 	{assembly_gallery_top}
 		<div class="col-lg-4 col-sm-6 col-xs-12">
-			<img src="./assets/images/parts/{robotpartimg}" class="thumbnail img-responsive">
+			<img src="./assets/images/parts/{robotpartimg}.jpeg" class="thumbnail img-responsive">
 			<button type="button" class="btn btn-primary btn-radio-makebot">Recycle Part</button>
 			<input type="checkbox" id="make-bot-button" class="hidden">
 			<label><input type="radio" name="optradio-top" id="{topid}"></label>
@@ -24,7 +24,7 @@
 	<h3>Torso Parts</h3>
 	{assembly_gallery_torso}
 		<div class="col-lg-4 col-sm-6 col-xs-12">
-			<img src="./assets/images/parts/{robotpartimg}" class="thumbnail img-responsive">
+			<img src="./assets/images/parts/{robotpartimg}.jpeg" class="thumbnail img-responsive">
 			  <button type="button" class="btn btn-primary btn-radio-makebot">Recycle Part</button>
 			  <input type="checkbox" id="make-bot-button" class="hidden">
 			  <label><input type="radio" name="optradio-torso" id="{torsoid}"></label>
@@ -36,7 +36,7 @@
 	<h3>Leg Parts</h3>
 	{assembly_gallery_legs}
 		<div class="col-lg-4 col-sm-6 col-xs-12">
-			<img src="./assets/images/parts/{robotpartimg}" class="thumbnail img-responsive">
+			<img src="./assets/images/parts/{robotpartimg}.jpeg" class="thumbnail img-responsive">
 			  <button type="button" class="btn btn-primary btn-radio-makebot">Recycle Part</button>
 			  <input type="checkbox" id="make-bot-button" class="hidden">
 			<label><input type="radio" name="optradio-legs" id="{legsid}"></label>
@@ -78,21 +78,21 @@
 			    legs = legsset[i].id;       
 			}
 		}
-		// if(top != undefined && torso != undefined && legs != undefined )
-		// {
-		// 	window.location = './assembly/assemblebot/' + top + '/' + torso + '/' + legs;
-		// }
+		if(top != undefined && torso != undefined && legs != undefined )
+		{
+			window.location = './assembly/assemblebot/' + top + '/' + torso + '/' + legs;
+		}
 
-		 $.ajax({
-			type: "POST",
-			url: "<?php echo base_url(); ?>" + '/assembly/assemblebot/' + top + '/' + torso + '/' + legs,
-			 // path to the controller             
-				success: function(data){        
-					console.log("Data sent to server");
-					confirm("You have successfully logged in with FB");
-					window.location.reload();       
-				}
-			});
+		 // $.ajax({
+			// type: "POST",
+			// url: "" + '/assembly/assemblebot/' + top + '/' + torso + '/' + legs,
+			//  // path to the controller             
+			// 	success: function(data){        
+			// 		console.log("Data sent to server");
+			// 		confirm("You have successfully logged in with FB");
+			// 		window.location.reload();       
+			// 	}
+			// });
     });
   });
   // function assemblebotbuttonaction(){

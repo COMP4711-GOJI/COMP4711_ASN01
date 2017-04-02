@@ -33,26 +33,41 @@ class Assembly extends Application
 	{
 		$this->data['pagebody'] = 'assembly';
 
-		$parts = $this->inventory->all_parts();
+		//$this->mproperties->registerme();
+		$parts = $this->mparts->all();
+		$usedparts = $this->mrobots->all();
 
-		foreach ($parts as $top) 
+		foreach ($parts as $part) 
 		{
-			if($top['part'] == 1)
-				$topgallery[] = array( 'robotpartimg' => $top['image'] , 'topid' => $top['CACode']);
+			$img = $part->model . $part->piece;
+
+			if( $part->piece == 1 && $part->available == 1)
+				$topgallery[] = array( 'robotpartimg' => $img , 'topid' => $part->cacode);
+
+			if( $part->piece == 2 && $part->available == 1)
+				$torsogallery[] = array( 'robotpartimg' => $img , 'torsoid' => $part->cacode);
+
+			if( $part->piece == 3 && $part->available == 1)
+				$legsgallery[] = array( 'robotpartimg' => $img , 'legsid' => $part->cacode);
+			
+			// if($part->piece == 1 && 
+			// 	 ! array_search($part->cacode, array_column($usedparts, 'head'))
+			// 	 )
+				
+			// 	$topgallery[] = array( 'robotpartimg' => $part['image'] , 'topid' => $part['CACode']);
+
+			// if($part->piece == 2 && 
+			// 	 ! array_search($part->cacode, array_column($usedparts, 'torso')) )
+				
+			// 	$torsogallery[] = array( 'robotpartimg' => $part['image'] , 'torsoid' => $part['CACode']);
+
+			// if($part->piece == 3 && 
+			// 	 ! array_search($part->cacode, array_column($usedparts, 'legs')))
+				
+			// 	$legsgallery[] = array( 'robotpartimg' => $part['image'] , 'legsid' => $part['CACode']);
+
 		}
 
-		foreach ($parts as $torso) 
-		{
-			if($torso['part'] == 2)
-				$torsogallery[] = array( 'robotpartimg' => $torso['image'] , 'torsoid' => $top['CACode']);
-		}
-
-		foreach ($parts as $legs) 
-		{
-			if($legs['part'] == 3)
-				$legsgallery[] = array( 'robotpartimg' => $legs['image'] , 'legsid' => $top['CACode']);
-		}
-		
 		$this->data['assembly_gallery_top'] = $topgallery;
 		$this->data['assembly_gallery_torso'] = $torsogallery;
 		$this->data['assembly_gallery_legs'] = $legsgallery;
@@ -61,24 +76,48 @@ class Assembly extends Application
 
 	public function assemblebot($top, $torso, $legs)
 	{
-		$role = $this->session->userdata('userrole');
+		//$role = $this->session->userdata('userrole');
 		// if(role == ROLE_SUPERVISOR)
 		// {
-			//$server = $this->data['umbrella'] . '/info/balance';
-			//$result = file_get_contents($server . '/' . $top . $torso . $legs);
 
-			// validate the selected parts, to make sure there is one of each needed for a complete bot
-			// add a record to your "robots" table, with the chosen parts
-			// remove the parts from the "parts" table
-			// update the history table(s)
+			// validate the selected parts
+			if( $this->mparts->exists($top)
+				&& $this->mparts->exists($torso)
+				&& $this->mparts->exists($legs))
+			{
+				//make part inaccessible from part table
+				$toprec = $this->mparts->get($top);
+				$torsorec = $this->mparts->get($torso);
+				$legsrec = $this->mparts->get($legs);
+
+				$toprec->available = 0;
+				$torsorec->available = 0;
+				$legsrec->available = 0;
+				
+				$this->mparts->update($toprec);
+				$this->mparts->update($torsorec);
+				$this->mparts->update($legsrec);
+
+				//add a record to your "robots" table, with the chosen parts	
+				$robotrec = array('head' => $top, 'torso' => $torso, 'legs' => $legs, 'available' => 1);
+				$this->mrobots->add($robotrec);
+
+				// update the history table(s)
+				$getrec = $this->mrobots->tail(1);
+				$mostrecentbotrec = reset($getrec);
+				$histrec = array('r_id' => $mostrecentbotrec->r_id, 'catagory' => 'assembly');
+				$this->mrhistory->add($histrec);
+			}
+			
 		//}
-		$this->index();
+		redirect('/assembly');
+		//$this->index();
 		//$this->render();
 	}
 
 	public function shipbot($bot)
 	{
-		$role = $this->session->userdata('userrole');
+		//$role = $this->session->userdata('userrole');
 		//if(role == ROLE_BOSS)
 		//{
 			$server = $this->data['umbrella'] . '/work/buymybot/';
@@ -94,7 +133,7 @@ class Assembly extends Application
 
 	public function recycle($part)
 	{
-		$role = $this->session->userdata('userrole');
+		//$role = $this->session->userdata('userrole');
 		//if(role == ROLE_SUPERVISOR)
 		//{
 			$server = $this->data['umbrella'] . '/work/recycle';
