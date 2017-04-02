@@ -10,6 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class History extends Application
 {
 
+	// How many items will be displayed at once
 	private $items_per_page = 15;
 
 	// Default constructor
@@ -27,7 +28,12 @@ class History extends Application
 		$this->page(1);
 	}
 
-	// Show a single page of todo items
+	/**
+	 * Show a page of history transactions
+	 * @param pHistory - parts history
+	 * @param rHistory - robot history
+	 * @author Robert Arendac
+	 */
 	private function show_page($pHistory, $rHistory)
 	{
 	    $this->data['pagetitle'] = 'History of Transactions';
@@ -53,9 +59,16 @@ class History extends Application
 	    $this->render();
 	}
 
-	// Extract & handle a page of items, defaulting to the beginning
+	/**
+	 * Show a single page with sorting capabilities
+	 * @param num - page to show
+	 * @param sort - column  to sort by
+	 * @param table - table to be sorted
+	 * @author Robert Arendac
+	 */
 	function page($num = 1, $sort = null, $table = null)
 	{
+		// Check to see if user wants to sort
 		if (isset($sort) && isset($table))
 		{
 			if (strcmp($table, "robots"))
@@ -78,12 +91,12 @@ class History extends Application
 	    $history = array(); // start with an empty extract
 
 	    // use a foreach loop, because the record indices may not be sequential
-	    $index = 0; // where are we in the tasks list
+	    $index = 0; // where are we in the history list
 	    $count = 0; // how many items have we added to the extract
 	    $start = ($num - 1) * $this->items_per_page;
 	    $pHistories = array();
 	    $rHistories = array();
-	    if ($this->mphistory->size() > 0)
+	    if ($this->mphistory->size() > 0)	//Check if db is empty first
 	    {
 		    foreach($partRecords as $history) 
 		    {
@@ -95,7 +108,7 @@ class History extends Application
 		        if ($count >= $this->items_per_page) break;
 		    }
 		}
-		if ($this->mrhistory->size() > 0)
+		if ($this->mrhistory->size() > 0) //Check if db is empty first
 		{
 		    $count = 0;
 		    $index = 0;
@@ -115,11 +128,17 @@ class History extends Application
 	    $this->show_page($pHistories, $rHistories);
 	}
 
+	/**
+	 * Build the navbar
+	 * @param num - page currently on
+	 * @author Robert Arendac
+	 */
 	private function pagenav($num) 
 	{
 		$maxp = ceil($this->mphistory->size() / $this->items_per_page);
 		$maxr = ceil($this->mrhistory->size() / $this->items_per_page);
 
+	    // check which table has more data
 	    $lastpage = max($maxp, $maxr);
 
 	    $parms = array(
