@@ -6,7 +6,6 @@ class MProperties extends MY_Model {
        parent::__construct('properties', 'team');
    }
 
-
    public function registerme($team, $pass){
        $catagory = 'work';
        $command = 'registerme';
@@ -148,5 +147,3 @@ class MProperties extends MY_Model {
        $record->password = $pass;
        $this->add($record);
    }
-
-}

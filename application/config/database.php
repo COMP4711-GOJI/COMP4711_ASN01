@@ -74,10 +74,9 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $GLOBALS = array();
-$GLOBALS['team'] = '';
-$GLOBALS['password'] = '';
+$GLOBALS['team'] = 'goji';
+$GLOBALS['password'] = '2e70e9';
 $GLOBALS['baseurl'] = 'https://umbrella.jlparry.com/';
-
 
 $db['default'] = array(
 	'dsn'	=> '',
