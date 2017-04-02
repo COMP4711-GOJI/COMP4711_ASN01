@@ -74,8 +74,9 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 
-$teamname = '';
-$password = '';
+$GLOBALS = array();
+$GLOBALS['team'] = '';
+$GLOBALS['password'] = '';
 
 
 $db['default'] = array(
