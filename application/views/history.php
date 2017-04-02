@@ -2,10 +2,10 @@
 <table class="table">
     <caption>Part transactions</caption>
 	<thead>
-		<th>ID</th>
-		<th>CA Code</th>
-		<th>Action</th>
-		<th>Time</th>
+		<th><font color='000'>ID</font></th>
+		<th><font color='000'>CA Code</font></th>
+		<th><font color='000'>Action</font></th>
+		<th><font color='000'>Time</font></th>
 	</thead>
 	<tbody>
         {p_data}
@@ -15,10 +15,10 @@
 <table class="table">
     <caption>Robot Transactions</caption>
 	<thead>
-		<th>ID</th>
-		<th>Robot</th>
-		<th>Action</th>
-		<th>Time</th>
+		<th><font color='000'>ID</font></th>
+		<th><font color='000'>Robot</font></th>
+		<th><font color='000'>Action</font></th>
+		<th><font color='000'>Time</font></th>
 	</thead>
 	<tbody>
         {r_data}

@@ -10,12 +10,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class History extends Application
 {
 
-	private $items_per_page = 5;
+	private $items_per_page = 1;
 
 	// Default constructor
 	function __construct()
 	{
 		parent::__construct();
+		$this->mproperties->registerme();
 	}
 
 	/**
@@ -44,7 +45,7 @@ class History extends Application
 	    $result = ''; // start with an empty array      
 	    foreach ($rHistory as $trans)
 	    {
-        	$result .= $this->parser->parse('onepart', (array) $trans, true);   
+        	$result .= $this->parser->parse('onerobot', (array) $trans, true);   
 	    }
 
 	    // and then pass them on
@@ -55,8 +56,8 @@ class History extends Application
 	// Extract & handle a page of items, defaulting to the beginning
 	function page($num = 1)
 	{
-	    $partRecords = $this->partTransactions->all(); // get all the tasks
-	    $robotRecords = $this->robotTransactions->all();
+	    $partRecords = $this->mphistory->all(); // get all the tasks
+	    $robotRecords = $this->mrhistory->all();
 	    $history = array(); // start with an empty extract
 
 	    // use a foreach loop, because the record indices may not be sequential
@@ -65,18 +66,26 @@ class History extends Application
 	    $start = ($num - 1) * $this->items_per_page;
 	    $pHistories = array();
 	    $rHistories = array();
-	    if ($this->partTransactions->size() > 0 &&  $this->robotTransactions->size() > 0)
+	    if ($this->mphistory->size() > 0)
+	    {
+		    foreach($partRecords as $history) 
 		    {
-		    foreach($partRecords as $history) {
-		        if ($index++ >= $start) {
+		        if ($index++ >= $start) 
+		        {
 		            $pHistories[] = $history;
 		            $count++;
 		        }
 		        if ($count >= $this->items_per_page) break;
 		    }
+		}
+		if ($this->mrhistory->size() > 0)
+		{
 		    $count = 0;
-		    foreach($robotRecords as $history) {
-		        if ($index++ >= $start) {
+		    $index = 0;
+		    foreach($robotRecords as $history) 
+		    {
+		        if ($index++ >= $start) 
+		        {
 		            $rHistories[] = $history;
 		            $count++;
 		        }
@@ -90,8 +99,10 @@ class History extends Application
 
 	private function pagenav($num) 
 	{
-	    $lastpage = max(ceil(count($this->partTransactions->size()) / $this->items_per_page), 
-	    		ceil(count($this->robotTransactions->size()) / $this->items_per_page));
+		$maxp = ceil($this->mphistory->size() / $this->items_per_page);
+		$maxr = ceil($this->mrhistory->size() / $this->items_per_page);
+
+	    $lastpage = max($maxp, $maxr);
 
 	    $parms = array(
 	        'first' => 1,
@@ -101,4 +112,5 @@ class History extends Application
 	    );
 
 	    return $this->parser->parse('itemnav', $parms, true);
+	}
 }
