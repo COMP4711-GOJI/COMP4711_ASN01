@@ -4,7 +4,6 @@
  * "tables": purchases, assemblies, and shipping locations.
  * @author Robert Arendac
  */
-
 class Transactions extends CI_Model {
 	// Purchases table, includes item purchased and date of purchase
 	var $purchase = array(
@@ -15,7 +14,6 @@ class Transactions extends CI_Model {
 		array('p_id' => '5', 'r_id' => '4', 'item' => 'bottom',  'date' => '21/12/2016', 'time' => '13:25'),
 		array('p_id' => '6', 'r_id' => '6', 'item' => 'torso',   'date' => '09/02/2017', 'time' => '14:55')
 	);
-
 	// Assemblies table, includes piece id, action performed, and date of assembly
 	var $assembly = array(
 		array('id' => '1', 'pieceid' => 'A2', 'action' => 'returned', 'date' => '10/01/2017', 'time' => '20:30'),
@@ -25,7 +23,6 @@ class Transactions extends CI_Model {
 		array('id' => '5', 'pieceid' => 'F1', 'action' => 'returned', 'date' => '17/08/2016', 'time' => '16:45'),
 		array('id' => '6', 'pieceid' => 'U2', 'action' => 'returned', 'date' => '11/11/2016', 'time' => '00:00')
 	);
-
 	// Shipments table, includes office of shipment and date where shipment occured
 	var $shipment = array(
 		array('id' => '1', 'office' => 'Vancouver', 	'date' => '14/01/2017', 'time' => '15:30'),
@@ -35,13 +32,11 @@ class Transactions extends CI_Model {
 		array('id' => '5', 'office' => 'Dubrovnik', 	'date' => '04/05/2016', 'time' => '13:25'),
 		array('id' => '6', 'office' => 'Semuc Champey', 'date' => '09/02/2016', 'time' => '14:55')
 	);
-
 	// Default constructor
 	public function __construct()
 	{
 		parent::__construct();
 	}
-
 	// Gets a specific purchase
 	public function getPurchase($which)
 	{
@@ -50,10 +45,8 @@ class Transactions extends CI_Model {
 			if ($record['p_id'] == $which)
 				return $record;
 		}
-
 		return null;
 	}
-
 	// Gets a specific assembly
 	public function getAssembly($which)
 	{
@@ -62,10 +55,8 @@ class Transactions extends CI_Model {
 			if ($record['id'] == $which)
 				return $record;
 		}
-
 		return null;
 	}
-
 	// Gets a specific shipment
 	public function getShipment($which)
 	{
@@ -74,37 +65,26 @@ class Transactions extends CI_Model {
 			if ($record['id'] == $which)
 				return $record;
 		}
-
 		return null;
 	}
-
 	// Returns all purchases
 	public function allPurchase()
 	{
 		return $this->purchase;
 	}
-
 	// Returns all assemblies
 	public function allAssembly()
 	{
 		return $this->assembly;
 	}
-
 	// Returns all shipments
 	public function allShipment()
 	{
 		return $this->shipment;
 	}
-
 	// Returns all data in the form of an array composed of the three tables.
 	public function getAll()
 	{
-		return array('purchases' => $this->purchase, 'assemblies' => $this->assembly,
-			'shipments' => $this->shipment);
-	}
-
-	public function size()
-	{
-		return (count($this->purchase) + count($this->assembly) + count($this->shipment));
+		return array('purchases' => $purchase, 'assemblies' => $assembly, 'shipments' => $assembly);
 	}
 }

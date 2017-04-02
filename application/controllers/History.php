@@ -35,7 +35,7 @@ class History extends Application
 	    $result = ''; // start with an empty array      
 	    foreach ($history as $trans)
 	    {
-        	$result .= $this->parser->parse('oneitem', (array) $trans, true);   
+        	$result .= $this->parser->parse('onepart', (array) $trans, true);   
 	    }
 
 	    // and then pass them on
@@ -46,20 +46,24 @@ class History extends Application
 	// Extract & handle a page of items, defaulting to the beginning
 	function page($num = 1)
 	{
-	    $records = $this->transactions->allPurchase(); // get all the tasks
+	    $records = $this->partTransactions->all(); // get all the tasks
 	    $history = array(); // start with an empty extract
 
 	    // use a foreach loop, because the record indices may not be sequential
 	    $index = 0; // where are we in the tasks list
 	    $count = 0; // how many items have we added to the extract
 	    $start = ($num - 1) * $this->items_per_page;
-	    foreach($records as $history) {
-	        if ($index++ >= $start) {
-	            $histories[] = $history;
-	            $count++;
-	        }
-	        if ($count >= $this->items_per_page) break;
-	    }
+	    $histories = array();
+	    if ($this->partTransactions->size() > 0)
+		    {
+		    foreach($records as $history) {
+		        if ($index++ >= $start) {
+		            $histories[] = $history;
+		            $count++;
+		        }
+		        if ($count >= $this->items_per_page) break;
+		    }
+		}
 
 	    $this->data['pagination'] = $this->pagenav($num);
 	    $this->show_page($histories);
@@ -67,7 +71,7 @@ class History extends Application
 
 	private function pagenav($num) 
 	{
-	    $lastpage = ceil(count($this->transactions->allPurchase()) / $this->items_per_page);
+	    $lastpage = ceil(count($this->partTransactions->size()) / $this->items_per_page);
 
 	    $parms = array(
 	        'first' => 1,
