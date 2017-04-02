@@ -23,7 +23,9 @@ class Manage extends Application
 		// $role = ROLE_USER;
 	 //    if ($role != ROLE_OWNER) redirect('/manage/notboss');
 
-		// $this->mproperties->registerme();
+		// $this->mproperties->registerme();		
+
+
 		// this is the view we want shown
 		$this->data['pagebody'] = 'manage';
 		$this->render();
@@ -46,8 +48,9 @@ class Manage extends Application
     	redirect('/manage');
 	}
 
-	function config(){
-		$team = $_POST['baseurl'];
+	function config(){		
+		$baseurl = $_POST['baseurl'];
+		$this->mproperties->registerme($team, $baseurl);
     	redirect('/manage');
 	}
 }

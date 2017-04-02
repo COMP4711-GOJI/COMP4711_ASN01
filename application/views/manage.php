@@ -36,7 +36,7 @@
 			<form role="form" action="/manage/config" method="post">
 				<div class="form-group">
 				<label for="baseurl">Base URL for PRC:</label>
-					<input type="text" class="form-control" name="baseurl" id="baseurl">
+					<input type="text" class="form-control" name="baseurl" id="baseurl" value="<?php echo $GLOBALS['baseurl'] ?>">
 				</div>
 				<button type="submit" class="btn btn-default">Update</button>
 			</form>
