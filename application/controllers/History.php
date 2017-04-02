@@ -27,38 +27,57 @@ class History extends Application
 	}
 
 	// Show a single page of todo items
-	private function show_page($history)
+	private function show_page($pHistory, $rHistory)
 	{
 	    $this->data['pagetitle'] = 'History of Transactions';
 	    $this->data['pagebody'] = 'history';
 	    
 	    $result = ''; // start with an empty array      
-	    foreach ($history as $trans)
+	    foreach ($pHistory as $trans)
 	    {
         	$result .= $this->parser->parse('onepart', (array) $trans, true);   
 	    }
 
 	    // and then pass them on
 	    $this->data['p_data'] = $result;
+
+	    $result = ''; // start with an empty array      
+	    foreach ($rHistory as $trans)
+	    {
+        	$result .= $this->parser->parse('onepart', (array) $trans, true);   
+	    }
+
+	    // and then pass them on
+	    $this->data['r_data'] = $result;
 	    $this->render();
 	}
 
 	// Extract & handle a page of items, defaulting to the beginning
 	function page($num = 1)
 	{
-	    $records = $this->partTransactions->all(); // get all the tasks
+	    $partRecords = $this->partTransactions->all(); // get all the tasks
+	    $robotRecords = $this->robotTransactions->all();
 	    $history = array(); // start with an empty extract
 
 	    // use a foreach loop, because the record indices may not be sequential
 	    $index = 0; // where are we in the tasks list
 	    $count = 0; // how many items have we added to the extract
 	    $start = ($num - 1) * $this->items_per_page;
-	    $histories = array();
-	    if ($this->partTransactions->size() > 0)
+	    $pHistories = array();
+	    $rHistories = array();
+	    if ($this->partTransactions->size() > 0 &&  $this->robotTransactions->size() > 0)
 		    {
-		    foreach($records as $history) {
+		    foreach($partRecords as $history) {
 		        if ($index++ >= $start) {
-		            $histories[] = $history;
+		            $pHistories[] = $history;
+		            $count++;
+		        }
+		        if ($count >= $this->items_per_page) break;
+		    }
+		    $count = 0;
+		    foreach($robotRecords as $history) {
+		        if ($index++ >= $start) {
+		            $rHistories[] = $history;
 		            $count++;
 		        }
 		        if ($count >= $this->items_per_page) break;
@@ -66,12 +85,13 @@ class History extends Application
 		}
 
 	    $this->data['pagination'] = $this->pagenav($num);
-	    $this->show_page($histories);
+	    $this->show_page($pHistories, $rHistories);
 	}
 
 	private function pagenav($num) 
 	{
-	    $lastpage = ceil(count($this->partTransactions->size()) / $this->items_per_page);
+	    $lastpage = max(ceil(count($this->partTransactions->size()) / $this->items_per_page), 
+	    		ceil(count($this->robotTransactions->size()) / $this->items_per_page));
 
 	    $parms = array(
 	        'first' => 1,

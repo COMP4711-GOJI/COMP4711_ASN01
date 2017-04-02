@@ -5,7 +5,7 @@
  * @author Robert Arendac
  */
 
-class Transactions extends MY_Model {
+class RobotTransactions extends MY_Model {
 	// Purchases table, includes item purchased and date of purchase
 	public function __construct()
 	{
