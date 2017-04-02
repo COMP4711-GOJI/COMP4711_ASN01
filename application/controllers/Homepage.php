@@ -20,20 +20,22 @@ class Homepage extends Application
 	{
 		$this->data['pagebody'] = 'homepage';
 
-		$scoop = $this->mproperties->scoop('goji');
+		$this->mproperties->registerme();
 
-		$report = json_decode($scoop[0]);
-		$timestamp = $scoop[1];
 
-		$id             = $report->id;
-		$balance        = $report->balance;
-		$boxes_bought   = $report->boxes_bought;
-		$parts_returned = $report->parts_returned;
-		$parts_made     = $report->parts_made;
-		$bots_built     = $report->bots_built;
-		$making         = $report->making;
-		$last_made      = $report->last_made;
+		$this->mparts->buybox();
 
+
+		$scoop = $this->mproperties->scoop($GLOBALS['team']);
+
+		$id             = $scoop->id;
+		$balance        = $scoop->balance;
+		$boxes_bought   = $scoop->boxes_bought;
+		$parts_returned = $scoop->parts_returned;
+		$parts_made     = $scoop->parts_made;
+		$bots_built     = $scoop->bots_built;
+		$making         = $scoop->making;
+		$last_made      = $scoop->last_made;
 
 		$this->data['id']             = $id;
 		$this->data['balance']        = $balance;
@@ -43,7 +45,6 @@ class Homepage extends Application
 		$this->data['bots_built']     = $bots_built;
 		$this->data['making']         = $making;
 		$this->data['last_made']      = $last_made;
-		$this->data['timestamp']      = $timestamp;
 
 		$this->render();
 	}
