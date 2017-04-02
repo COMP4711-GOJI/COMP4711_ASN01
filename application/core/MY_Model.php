@@ -112,6 +112,13 @@ interface Data_mapper {
 	function some($what, $which);
 
 	/**
+	 * Retrieve the DB records sorted by a value.
+	 * @param string $by 	Value to sort by
+	 * @return Sorted records
+	 */
+	function sort($by);
+
+	/**
 	 * Retrieve records from the beginning of a table.
 	 * @return array(object) The relevant records
 	 */
@@ -310,6 +317,13 @@ class MY_Model extends CI_Model implements Data_mapper {
 			$this->db->where($what, $which); // special treatment for period
 		} else
 			$this->db->where($what, $which);
+		$query = $this->db->get($this->_tableName);
+		return $query->result();
+	}
+
+	function sort($by)
+	{
+		$this->db->order_by($by, 'asc');
 		$query = $this->db->get($this->_tableName);
 		return $query->result();
 	}

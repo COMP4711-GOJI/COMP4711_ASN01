@@ -1,69 +1,26 @@
-<div>
-    <table class="table">
-        <caption>Purchases made</caption>
-    	<thead>
-    		<th>ID</th>
-    		<th>Item</th>
-    		<th>Date</th>
-    		<th>Time</th>
-    	</thead>
-    	<tbody>
+{pagination}
+<table class="table">
+    <caption>Part transactions</caption>
+	<thead>
+		<th><a href="/history/page/{page}/h_id/part"><font color='000'>ID</font></a></th>
+		<th><a href="/history/page/{page}/cacode/part"><font color='000'>CA Code</font></a></th>
+		<th><a href="/history/page/{page}/catagory/part"><font color='000'>Action</font></a></th>
+		<th><a href="/history/page/{page}/stamp/part"><font color='000'>Time</font></a></th>
+	</thead>
+	<tbody>
         {p_data}
-            <tr>
-        		<td>{p_id}</td>
-        		<td>{item}</td>
-        		<td>{p_date}</td>
-        		<td>{p_time}</td>
-            </tr>
-        {/p_data}
-    	</tbody>
-    </table>
-</div>
+	</tbody>
+</table>
 
-
-<div>
-    <table class="table">
-        <caption>Assemblies</caption>
-    	<thead>
-    		<th>ID</th>
-    		<th>Piece ID</th>
-    		<th>Action</th>
-    		<th>Date</th>
-    		<th>Time</th>
-    	</thead>
-    	<tbody>
-            {a_data}
-            <tr>
-        		<td>{a_id}</td>
-        		<td>{piece_id}</td>
-        		<td>{action}</td>
-        		<td>{a_date}</td>
-        		<td>{a_time}</td>
-            </tr>
-            {/a_data}
-    	</tbody>
-    </table>
-</div>
-
-
-<div>
-    <table class="table">
-    <caption>Shipments</caption>
-    	<thead>
-    		<th>ID</th>
-    		<th>Office</th>
-    		<th>Date</th>
-    		<th>Time</th>
-    	</thead>
-    	<tbody>
-            {s_data}
-            <tr>
-        		<td>{s_id}</td>
-        		<td>{office}</td>
-        		<td>{s_date}</td>
-        		<td>{s_time}</td>
-            </tr>
-            {/s_data}
-    	</tbody>
-    </table>
-</div>
+<table class="table">
+    <caption>Robot Transactions</caption>
+	<thead>
+		<th><a href="/history/page/{page}/h_id/robot"><font color='000'>ID</font></th>
+		<th><a href="/history/page/{page}/r_id/robot"><font color='000'>Robot</font></th>
+		<th><a href="/history/page/{page}/catagory/robot"><font color='000'>Action</font></th>
+		<th><a href="/history/page/{page}/stamp/robot"><font color='000'>Time</font></th>
+	</thead>
+	<tbody>
+        {r_data}
+	</tbody>
+</table>
