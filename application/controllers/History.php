@@ -24,6 +24,7 @@ class History extends Application
 		// this is the view we want shown
 		$this->data['pagebody'] = 'history';
 		
+		/*
 		// Builds the list of purchases to be displayed
 		$p_source = $this->transactions->allPurchase();
 		$purchases = array();
@@ -54,6 +55,7 @@ class History extends Application
 		$this->data['a_data'] = $assemblies;
 		$this->data['s_data'] = $shipments;
 		
+		*/
 		$this->render();
 	}
 

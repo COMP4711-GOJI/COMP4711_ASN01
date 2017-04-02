@@ -31,6 +31,8 @@ class Assembly extends Application
 	public function index()
 	{
 		$this->data['pagebody'] = 'assembly';
+
+		/*
 		
 		$robots = $this->robots->all();
 		$parts = $this->inventory->all_parts();
@@ -47,6 +49,8 @@ class Assembly extends Application
 		
 		$this->data['assembly_gallery'] = $robotgallery ;
 		$this->data['assembly_gallery'] = $partsgallery ;
+
+		*/
 		$this->render();
 	}
 
