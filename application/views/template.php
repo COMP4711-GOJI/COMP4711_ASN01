@@ -46,7 +46,31 @@ VERSION : 1.1
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
         <link rel="stylesheet" type="text/css" href="/assets/css/responsive.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/color/rose.css">
+       
+
+
+    <!-- [ DEFAULT SCRIPT ] -->
+    <script src="library/modernizr.custom.97074.js"></script>
+    <script src="library/jquery-1.11.3.min.js"></script>
+        <script src="library/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>  
+    <!-- [ PLUGIN SCRIPT ] -->
+        <script src="library/vegas/vegas.min.js"></script>
+    <script src="js/plugins.js"></script>
+        <!-- [ TYPING SCRIPT ] -->
+         <script src="js/typed.js"></script>
+         <!-- [ COUNT SCRIPT ] -->
+         <script src="js/fappear.js"></script>
+       <script src="js/jquery.countTo.js"></script>
+    <!-- [ SLIDER SCRIPT ] -->  
+        <script src="js/owl.carousel.js"></script>
+         <script src="js/jquery.magnific-popup.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="js/SmoothScroll.js"></script>
         
+        <!-- [ COMMON SCRIPT ] -->
+    <script src="js/common.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
 </head>
 <body >
 <!-- [WRAPPER ]
@@ -114,27 +138,9 @@ VERSION : 1.1
 <!-- [ /WRAPPER ]
 =============================================================================================================================-->
 
-    <!-- [ DEFAULT SCRIPT ] -->
-    <script src="library/modernizr.custom.97074.js"></script>
-    <script src="library/jquery-1.11.3.min.js"></script>
-        <script src="library/bootstrap/js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>  
-    <!-- [ PLUGIN SCRIPT ] -->
-        <script src="library/vegas/vegas.min.js"></script>
-    <script src="js/plugins.js"></script>
-        <!-- [ TYPING SCRIPT ] -->
-         <script src="js/typed.js"></script>
-         <!-- [ COUNT SCRIPT ] -->
-         <script src="js/fappear.js"></script>
-       <script src="js/jquery.countTo.js"></script>
-    <!-- [ SLIDER SCRIPT ] -->  
-        <script src="js/owl.carousel.js"></script>
-         <script src="js/jquery.magnific-popup.min.js" type="text/javascript"></script>
-        <script type="text/javascript" src="js/SmoothScroll.js"></script>
-        
-        <!-- [ COMMON SCRIPT ] -->
-    <script src="js/common.js"></script>
-  
+
+
+ 
 </body>
 
 

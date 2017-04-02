@@ -23,6 +23,7 @@ class Assembly extends Application
 	function __construct()
 	{
 		parent::__construct();
+		$this->data['umbrella'] = 'https://umbrella.jlparry.com';
 	}
 
 	/**
@@ -58,5 +59,49 @@ class Assembly extends Application
 		$this->data['assembly_gallery_legs'] = $legsgallery;
 		$this->render();
 	}
+
+	public function assemblebot($top, $torso, $legs)
+	{
+		$role = $this->session->userdata('userrole');
+		// if(role == ROLE_SUPERVISOR)
+		// {
+			//$server = $this->data['umbrella'] . '/info/balance';
+			//$result = file_get_contents($server . '/' . $top . $torso . $legs);
+
+			// validate the selected parts, to make sure there is one of each needed for a complete bot
+			// add a record to your "robots" table, with the chosen parts
+			// remove the parts from the "parts" table
+			// update the history table(s)
+		//}
+		$this->index();
+		//$this->render();
+	}
+
+	public function shipbot($bot)
+	{
+		$role = $this->session->userdata('userrole');
+		//if(role == ROLE_BOSS)
+		//{
+			$server = $this->data['umbrella'] . '/work/buymybot/';
+			
+			$top = "TBD";
+			$torso = "TBD";
+			$legs = "TBD";
+
+			$result = file_get_contents($server . '/' . $top . $torso . $legs);
+			//parse results
+		//}
+	}
+
+	public function recycle($part)
+	{
+		$role = $this->session->userdata('userrole');
+		//if(role == ROLE_SUPERVISOR)
+		//{
+			$server = $this->data['umbrella'] . '/work/recycle';
+			$result = file_get_contents($server . '/' . $part);
+			//parse results
+		//}
+	}	
 
 }
