@@ -8,12 +8,13 @@ class MProperties extends MY_Model {
 
 
     public function registerme(){
-    	$team = $GLOBALS['team'];
-    	$pass = $GLOBALS['password'];
+        $catagory = 'work';
+        $command = 'registerme';
+        $team = $GLOBALS['team'];
+        $pass = $GLOBALS['password'];
 
-        $result = file_get_contents('https://umbrella.jlparry.com/work/registerme/' . $team . '/' . $pass);
-        $array = explode(' ', $result); 
-        print_r($array);
+        $result =  $this->server_fetch_param($catagory, $command, $team, $pass);
+        $array = explode(' ', $result);
         $apikey = $array[1];
 
         $this->newTeam($team, $pass);
@@ -31,71 +32,99 @@ class MProperties extends MY_Model {
     }
 
     public function rebootme(){
-    	$key = $this->getApiKey();
-        $result = file_get_contents('https://umbrella.jlparry.com/work/rebootme/?key=' . $key);
-        $array = explode(' ', $result); 
-        print_r($array);
+        $catagory = 'work';
+        $command = 'rebootme';
+        $result = $this->server_fetch_key($catagory, $command);
+        return $result;
     }
 
     public function goodbye(){
-    	$key = $this->getApiKey();
-        $result = file_get_contents('https://umbrella.jlparry.com/work/goodbye/?key=' . $key);
-        $array = explode(' ', $result); 
-        print_r($array);
+        $catagory = 'work';
+        $command = 'goodbye';
+        $result = $this->server_fetch_key($catagory, $command);
+        return $result;
     }
 
     public function balance(){
     	$team = $GLOBALS['team'];
-        $result = file_get_contents('https://umbrella.jlparry.com/info/balance/' . $team);
-        $array = explode(' ', $result); 
-        print_r($array);
-        $amount = $array[0];
-        return $amount;
+        $catagory = 'info';
+        $command = 'balance';
+        $result = $this->server_fetch_param($catagory, $command, $team);
+        return $result;
     }
 
     public function scoop($team){
-        $result = file_get_contents('https://umbrella.jlparry.com/info/scoop/' . $team);
-        $array = explode(' ', $result); 
-        $array[0] .= '"}';//need this to fix an error in scoop
-        $array[1] = substr($array[1], 0, -2);//need this to fix an error in scoop
-        return $array;
+        $catagory = 'info';
+        $command = 'scoop';
+        $result = $this->server_fetch_param($catagory, $command, $team);
+        return json_decode($result);
     }
 
+    //this needs to be tested, json might need to be decoded
     public function verify($cacode){
-        $result = file_get_contents('https://umbrella.jlparry.com/info/verify/' . $cacode);
-        $array = explode(' ', $result); 
-        print_r($array);
-        return $array;
+        $catagory = 'info';
+        $command = 'verify';
+        $result = $this->server_fetch_param($catagory, $command, $cacode);
+        return $result;
     }
 
+    //this needs to be tested, json might need to be decoded
     public function whomakes($parttype){
-        $result = file_get_contents('https://umbrella.jlparry.com/info/whomakes/' . $parttype);
-        $array = explode(' ', $result); 
-        print_r($array);
-        return $array;
+        $catagory = 'info';
+        $command = 'whomakes';
+        $result = $this->server_fetch_param($catagory, $command, $parttype);
+        return $result;
     }
 
 
     public function whoami($apikey){
-        $result = file_get_contents('https://umbrella.jlparry.com/info/whoami?key=' . $apikey);
-        $array = explode(' ', $result); 
-        print_r($array);
-        return $array;
+        $catagory = 'info';
+        $command = 'whoami';
+        $result = $this->server_fetch_key($catagory, $command, $apikey);
+        return $result;
     }
 
     public function job($team){
-        $result = file_get_contents('https://umbrella.jlparry.com/info/job/' . $team);
-        $array = explode(' ', $result); 
-        print_r($array);
-        return $array;
+        $catagory = 'info';
+        $command = 'job';
+        $result = $this->server_fetch_param($catagory, $command, $team);
+        return $result;
     }
 
     public function teams(){
-        $result = file_get_contents('https://umbrella.jlparry.com/info/teams');
-        $array = explode(' ', $result); 
-        print_r($array);
-        return $array;
+        $catagory = 'info';
+        $command = 'teams';
+        $result = $this->server_fetch_param($catagory, $command);
+        return json_decode($result);
     }
+
+
+
+    public function server_fetch_key($catagory, $command, $apikey = null){
+        if($apikey == null)
+            $apikey = $this->getApiKey();
+        $result = file_get_contents('https://umbrella.jlparry.com/'. $catagory .'/' . $command . '?key=' . $apikey);
+        return $result;
+    }
+
+    public function server_fetch_param($catagory, $command, $param1 = null, $param2 = null, $param3 = null){
+        $querry = 'https://umbrella.jlparry.com/' . $catagory . '/'. $command;
+        if($param1 != null){
+            $querry .= '/';
+            $querry .= $param1;
+        }
+        if($param2 != null){
+            $querry .= '/';
+            $querry .= $param2;
+        }
+        if($param3 != null){
+            $querry .= '/';
+            $querry .= $param3;
+        }
+        $result = file_get_contents($querry);
+        return $result;
+    }
+
 
 
     private function newTeam($team, $pass){
