@@ -17,14 +17,12 @@ class Parts extends Application
      * of parts. Also displays the model and line of each part, and links
      * the image to a page with more detailed info on that part.
      */
-    public function index()
-    {
-		
+    public function index() {
         // this is the view we want shown
         $this->data['pagebody'] = 'parts';
 
-        // $this->mproperties->registerme();
-        // $this->mparts->buybox();
+        //$this->mproperties->registerme();
+        //$this->mparts->buybox();
         
         $parts = $this->mparts->all();
 
@@ -41,8 +39,10 @@ class Parts extends Application
         $records = array();
         foreach ($parts as $record)
         {
-            $image = $record->model . $record->piece . '.jpeg';
-            $records[] = array('cacode' => $record->cacode, 'model' => $record->model, 'line' => getLine($record->model), 'image' => $image);
+			if ($record->available == false) {
+				$image = $record->model . $record->piece . '.jpeg';
+				$records[] = array('cacode' => $record->cacode, 'model' => $record->model, 'line' => $this->getLine($record->model), 'image' => $image);
+			}
         }
 
         $this->data['parts'] = $records;
@@ -80,7 +80,7 @@ class Parts extends Application
         $this->render();
     }
 
-    public function getLine($model){
+    public function getLine($model) {
         if($model >= 'a' && $model <= 'l'){
             return 'Household';
         }
