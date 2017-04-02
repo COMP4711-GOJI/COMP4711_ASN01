@@ -20,8 +20,7 @@ class Manage extends Application
 	public function index()
 	{
 		// $role = $this->session->userdata('userrole');
-		// $role = ROLE_USER;
-	 //    if ($role != ROLE_OWNER) redirect('/manage/notboss');
+	 //    if ($role != ROLE_BOSS) redirect('/manage/notboss');
 
 		// $this->mproperties->registerme();		
 
