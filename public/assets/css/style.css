@@ -998,3 +998,7 @@ img.thumbnail
 {
     margin-top: 20px;
 }
+
+#exTab2 h3 {
+  padding : 15px 15px;
+}

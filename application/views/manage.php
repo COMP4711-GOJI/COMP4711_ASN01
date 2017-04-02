@@ -1,0 +1,25 @@
+<div id="exTab2" class="container">	
+	<ul class="nav nav-tabs">
+		<li class="active">
+		<a  href="#1" data-toggle="tab">Reboot</a>
+		</li>
+		<li><a href="#2" data-toggle="tab">PRC Registration</a>
+		</li>
+		<li><a href="#3" data-toggle="tab">Sell Assembled Bots</a>
+		</li>
+	</ul>
+
+	<div class="tab-content ">
+		<div class="tab-pane active" id="1">
+			<h3>Reboot to reset inventory and history.</h3>
+			
+			<a href="/manage/reboot"><button type="button" class="btn btn-primary btn-radio-makebot">Reboot Me!</button><input type="button" class="hidden"/></a>
+		</div>
+		<div class="tab-pane" id="2">
+			<h3>Notice the gap between the content and tab after applying a background color</h3>
+		</div>
+		<div class="tab-pane" id="3">
+			<h3>add clearfix to tab-content (see the css)</h3>
+		</div>
+	</div>
+</div>
