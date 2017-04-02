@@ -16,7 +16,18 @@
 			<a href="/manage/reboot"><button type="button" class="btn btn-primary btn-radio-makebot">Reboot Me!</button><input type="button" class="hidden"/></a>
 		</div>
 		<div class="tab-pane" id="2">
-			<h3>Notice the gap between the content and tab after applying a background color</h3>
+			<h3>PRC Registration Form</h3>
+			<form role="form" action="/manage/register" method="post">
+				<div class="form-group">
+				<label for="plantname">Plant Name:</label>
+					<input type="text" class="form-control" name="plantname" id="plantname">
+				</div>
+				<div class="form-group">
+					<label for="token">Secret Token:</label>
+					<input type="text" class="form-control" name="token" id="token">
+				</div>
+				<button type="submit" class="btn btn-default">Register</button>
+			</form>
 		</div>
 		<div class="tab-pane" id="3">
 			<h3>add clearfix to tab-content (see the css)</h3>

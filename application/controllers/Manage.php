@@ -39,4 +39,10 @@ class Manage extends Application
     	redirect('/manage');
 	}
 
+	function register(){
+		$team = $_POST['plantname'];
+    	$pass = $_POST['token'];
+    	$this->mproperties->registerme($team, $pass);
+    	redirect('/manage');
+	}
 }
