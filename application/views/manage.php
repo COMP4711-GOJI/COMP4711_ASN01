@@ -5,7 +5,9 @@
 		</li>
 		<li><a href="#2" data-toggle="tab">PRC Registration</a>
 		</li>
-		<li><a href="#3" data-toggle="tab">Sell Assembled Bots</a>
+		<li><a href="#3" data-toggle="tab">Configuration</a>
+		</li>
+		<li><a href="#4" data-toggle="tab">Sell Assembled Bots</a>
 		</li>
 	</ul>
 
@@ -30,6 +32,16 @@
 			</form>
 		</div>
 		<div class="tab-pane" id="3">
+			<h3>Configuration</h3>
+			<form role="form" action="/manage/config" method="post">
+				<div class="form-group">
+				<label for="baseurl">Base URL for PRC:</label>
+					<input type="text" class="form-control" name="baseurl" id="baseurl">
+				</div>
+				<button type="submit" class="btn btn-default">Update</button>
+			</form>
+		</div>
+		<div class="tab-pane" id="4">
 			<h3>add clearfix to tab-content (see the css)</h3>
 		</div>
 	</div>

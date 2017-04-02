@@ -45,4 +45,9 @@ class Manage extends Application
     	$this->mproperties->registerme($team, $pass);
     	redirect('/manage');
 	}
+
+	function config(){
+		$team = $_POST['baseurl'];
+    	redirect('/manage');
+	}
 }
