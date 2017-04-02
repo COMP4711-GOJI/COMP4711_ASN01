@@ -101,6 +101,4 @@ class History extends Application
 	    );
 
 	    return $this->parser->parse('itemnav', $parms, true);
-	}
-
 }

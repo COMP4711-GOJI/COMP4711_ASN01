@@ -2,16 +2,26 @@
 <div>
     <table class="table">
     	<thead>
-    		<th>Total Assembled</th>
-    		<th>Total Parts</th>
-    		<th>Total Spent</th>
-    		<th>Total Earned</th>
+    		<th>ID</th>
+    		<th>Balance</th>
+    		<th>Boxes Bought</th>
+    		<th>Parts Returned</th>
+            <th>Parts Made</th>
+            <th>Bots Built</th>
+            <th>Making</th>
+            <th>Last Made</th>
+            <th>Timestamp</th>
     	</thead>
     	<tbody>
-    		<td>{total_assembled}</td>
-    		<td>{total_parts}</td>
-    		<td>{total_spent}</td>
-    		<td>{total_earned}</td>
+    		<td>{id}</td>
+    		<td>{balance}</td>
+    		<td>{boxes_bought}</td>
+    		<td>{parts_returned}</td>
+            <td>{parts_made}</td>
+            <td>{bots_built}</td>
+            <td>{making}</td>
+            <td>{last_made}</td>
+            <td>{timestamp}</td>
     	</tbody>
     </table>
 </div>

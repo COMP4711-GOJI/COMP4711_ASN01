@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2017 at 12:53 AM
+-- Generation Time: Apr 02, 2017 at 07:20 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -70,7 +70,8 @@ CREATE TABLE `robots` (
   `r_id` int(11) NOT NULL,
   `head` varchar(8) NOT NULL,
   `torso` varchar(8) NOT NULL,
-  `legs` varchar(8) NOT NULL
+  `legs` varchar(8) NOT NULL,
+  `available` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

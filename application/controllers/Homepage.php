@@ -19,32 +19,31 @@ class Homepage extends Application
 	public function index()
 	{
 		$this->data['pagebody'] = 'homepage';
-        
-		$parts   = $this->inventory->all_parts();
-		$robots  = $this->robots->all();
-		$history = $this->transactions->allPurchase();
 
-		$total_assembled = sizeof($robots);
-		$total_parts     = sizeof($parts);
-		$total_spent     = 0;
-		$total_earned    = 0;
+		$scoop = $this->mproperties->scoop('goji');
+
+		$report = json_decode($scoop[0]);
+		$timestamp = $scoop[1];
+
+		$id             = $report->id;
+		$balance        = $report->balance;
+		$boxes_bought   = $report->boxes_bought;
+		$parts_returned = $report->parts_returned;
+		$parts_made     = $report->parts_made;
+		$bots_built     = $report->bots_built;
+		$making         = $report->making;
+		$last_made      = $report->last_made;
 
 
-		foreach ($parts as $item)
-		{
-			$total_spent += $item['cost'];
-		}
-		foreach ($history as $item)
-		{
-			$id = $item['r_id'];
-			$robot = $this->robots->get($id);
-			$total_earned += $robot['retail'];
-		}
-                
-		$this->data['total_assembled'] = $total_assembled;
-		$this->data['total_parts']     = $total_parts;
-		$this->data['total_spent']     = $total_spent;
-		$this->data['total_earned']    = $total_earned;
+		$this->data['id']             = $id;
+		$this->data['balance']        = $balance;
+		$this->data['boxes_bought']   = $boxes_bought;
+		$this->data['parts_returned'] = $parts_returned;
+		$this->data['parts_made']     = $parts_made;
+		$this->data['bots_built']     = $bots_built;
+		$this->data['making']         = $making;
+		$this->data['last_made']      = $last_made;
+		$this->data['timestamp']      = $timestamp;
 
 		$this->render();
 	}
