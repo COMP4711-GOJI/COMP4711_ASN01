@@ -16,6 +16,7 @@ class MParts extends MY_Model {
 
         foreach($parts as $part){
             $this->newPart($part->id, $part->model, $part->piece, $part->plant, $part->stamp);
+			$this->mphistory->addPart($part->id, "box");
         }
     }
 
@@ -28,6 +29,7 @@ class MParts extends MY_Model {
 
         foreach($parts as $part){
             $this->newPart($part->id, $part->model, $part->piece, $part->plant, $part->stamp);
+			$this->mphistory->addPart($part->id, "build");
         }
     }
 
