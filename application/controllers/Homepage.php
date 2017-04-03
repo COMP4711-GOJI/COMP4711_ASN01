@@ -20,7 +20,7 @@ class Homepage extends Application
 	{
 		$this->data['pagebody'] = 'homepage';
 
-		$this->mproperties->registerme();
+		// $this->mproperties->registerme();
 
 
 		$this->mparts->buybox();
