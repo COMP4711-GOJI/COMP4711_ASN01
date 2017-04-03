@@ -73,10 +73,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
-
-$teamname = '';
-$password = '';
-
+$GLOBALS = array();
+$GLOBALS['team'] = 'goji';
+$GLOBALS['password'] = '2e70e9';
+$GLOBALS['baseurl'] = 'https://umbrella.jlparry.com/';
 
 $db['default'] = array(
 	'dsn'	=> '',

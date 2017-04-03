@@ -10,7 +10,6 @@
             <th>Bots Built</th>
             <th>Making</th>
             <th>Last Made</th>
-            <th>Timestamp</th>
     	</thead>
     	<tbody>
     		<td>{id}</td>
@@ -21,7 +20,6 @@
             <td>{bots_built}</td>
             <td>{making}</td>
             <td>{last_made}</td>
-            <td>{timestamp}</td>
     	</tbody>
     </table>
 </div>
