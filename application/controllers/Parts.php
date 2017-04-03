@@ -80,6 +80,11 @@ class Parts extends Application
         $this->render();
     }
 
+	/**
+     * @param $model The model of the part whose line you want.
+     *
+     * Derives the part line from the part model.
+     */
     public function getLine($model) {
         if($model >= 'a' && $model <= 'l'){
             return 'Household';
@@ -91,4 +96,22 @@ class Parts extends Application
             return 'Companion';
         }
     }
+	
+	/**
+     * Calls buybox from parts model which call PRC buybox api. 
+	 * Refreshes the page to display new parts.
+     */
+	public function buyBox() {
+		$this->mparts->buybox();
+		redirect('/parts');
+	}
+	
+	/**
+     * Calls mybuilds from parts model which call PRC build api. 
+	 * Refreshes the page to display new parts.
+     */
+	public function build() {
+		$this->mparts->mybuilds();
+		redirect('/parts');
+	}
 }

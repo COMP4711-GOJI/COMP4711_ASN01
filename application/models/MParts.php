@@ -16,6 +16,10 @@ class MParts extends MY_Model {
 
         foreach($parts as $part){
             $this->newPart($part->id, $part->model, $part->piece, $part->plant, $part->stamp);
+			$historyRecord = $this->mphistory->create();
+			$historyRecord->cacode = $part->id;
+			$historyRecord->category = "box";
+			$this->mphistory->add($historyRecord);
         }
     }
 
@@ -28,7 +32,13 @@ class MParts extends MY_Model {
 
         foreach($parts as $part){
             $this->newPart($part->id, $part->model, $part->piece, $part->plant, $part->stamp);
+			$historyRecord = $this->mphistory->create();
+			$historyRecord->cacode = $part->id;
+			$historyRecord->category = "build";
+			$this->mphistory->add($historyRecord);
         }
+		
+		
     }
 
 
