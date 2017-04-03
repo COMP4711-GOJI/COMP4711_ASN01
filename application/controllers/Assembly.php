@@ -127,24 +127,44 @@ class Assembly extends Application
 		//if(role == ROLE_BOSS)
 		//{
 			$server = $this->data['umbrella'] . '/work/buymybot/';
-			
+			$apik = $this->mproperties->getApiKey();
 			$top = "TBD";
 			$torso = "TBD";
 			$legs = "TBD";
 
 			$result = file_get_contents($server . '/' . $top . $torso . $legs);
 			//parse results
+			redirect('/assembly');
 		//}
 	}
 
-	public function recycle($part)
+	public function recycle($part1, $part2, $part3)
 	{
 		//$role = $this->session->userdata('userrole');
 		//if(role == ROLE_SUPERVISOR)
 		//{
 			$server = $this->data['umbrella'] . '/work/recycle';
-			$result = file_get_contents($server . '/' . $part);
+			$apik = $this->mproperties->getApiKey();	
+			if($part1 == '-1' || $part1 == 'undefined' ){
+				$result = -1; // not OK
+			} else if($part2 == '-1' || $part2 == 'undefined' ) {
+				$result = file_get_contents($server . '/' . $part1 . '?key=' . $apik);
+			} else if($part3 == '-1' || $part3 == 'undefined' ) {
+				$result = file_get_contents($server . '/' . $part1 . '/' . $part2 . '?key=' . $apik);
+			} else {
+				$result = file_get_contents($server . '/' . $part1 . '/' . $part2 . '/' . $part3 . '?key=' . $apik);
+			}
+
+			$res = str_split($result, 2);
+			if ( $res[0] == 'OK')
+			{
+				$rec = $this->mparts->get($part);
+				$rec->available = 0;
+				$this->mparts->update($rec);
+			}
+
 			//parse results
+			redirect('/assembly');
 		//}
 	}	
 
