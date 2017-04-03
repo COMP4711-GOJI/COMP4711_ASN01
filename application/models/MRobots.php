@@ -11,7 +11,7 @@ class MRobots extends MY_Model {
         $command = 'buymybot';
 
         $result =  $this->mproperties->server_fetch_param($catagory, $command, $top, $torso, $legs);
-        
+
        return $result;
     }
     

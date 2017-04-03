@@ -130,26 +130,6 @@ class Assembly extends Application
 		//$this->render();
 	}
 
-	public function shipbot($bot)
-	{
-		//$role = $this->session->userdata('userrole');
-		//if(role == ROLE_BOSS)
-		//{
-			$server = $this->data['umbrella'] . '/work/buymybot';
-			$apik = $this->mproperties->getApiKey();
-			$robot = $this->mrobot->get($bot);
-			$result = file_get_contents($server . '/' . $robot->head . '/' . $robot->torso . '/' . $robot->legs . '?key=' . $apik);
-			if ( $res[0] == 'OK')
-			{
-				$robot->available = 0;
-				$this->mrobot->update($rec);
-				$histrec = array('r_id' => $robot->r_id, 'catagory' => 'shipment');
-				$this->mrhistory->add($histrec);
-			}
-			redirect('/assembly');
-		//}
-	}
-
 	public function recycle($part1, $part2, $part3)
 	{
 		//$role = $this->session->userdata('userrole');

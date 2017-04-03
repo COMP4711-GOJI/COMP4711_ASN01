@@ -26,13 +26,22 @@ class Manage extends Application
 		// $this->mproperties->registerme();		
 
 		$robots = $this->mrobots->all();
+
 		foreach ($robots as $robot) 
 		{
 			$robotsbuilt[] = array('robotid' => $robot->r_id, 'head' => $robot->head, 'torso' => $robot->torso, 'legs' => $robot->legs, 'available' => $robot->available);
 		}
 
 		// this is the view we want shown
+		// $bottable = '';	
+		// foreach ($robots as $bot) 
+		// {
+		// 	$robotentry = array('r_id' => $bot->r_id , 'head' => $bot->head , 'torso' => $bot->torso , 'legs' => $bot->legs, 'bot_id' => $bot->r_id  );
+			
+  //       	$bottable .= $this->parser->parse('oneassembledbot', $robotentry);    
+		// }
 		$this->data['robots_built'] = $robotsbuilt;
+		// $this->data['robottable'] = $bottable;
 		$this->data['pagebody'] = 'manage';
 		$this->render();
 	}
@@ -62,20 +71,43 @@ class Manage extends Application
     	redirect('/manage');
 	}
 
-
-	
-
-	// function sellbot($rid){
-	// 	$robot = $this->mrobots->get($rid);
-	// 	$top = $robot->top;
-	// 	$torso = $robot->torso;
-	// 	$legs = $robots->legs;
- //    	$result = $this->mrobots->sellbot($top, $torso, $legs);
- //    	if ($result[1] == 'ok'){
- //    		$rec = $this->mrobots->get($rid);
- //    		$rec->available = 0;
- //    		$this->mrobots->update($rec);
- //    	}
- //    	redirect('/manage');
+	// public function shipbot($bot)
+	// {
+	// 	//$role = $this->session->userdata('userrole');
+	// 	//if(role == ROLE_BOSS)
+	// 	//{
+	// 		$server = $this->data['umbrella'] . '/work/buymybot';
+	// 		$apik = $this->mproperties->getApiKey();
+	// 		$robot = $this->mrobot->get($bot);
+	// 		$result = file_get_contents($server . '/' . $robot->head . '/' . $robot->torso . '/' . $robot->legs . '?key=' . $apik);
+	// 		if ( $res[0] == 'OK')
+	// 		{
+	// 			$robot->available = 0;
+	// 			$this->mrobot->update($rec);
+	// 			$histrec = array('r_id' => $robot->r_id, 'catagory' => 'shipment');
+	// 			$this->mrhistory->add($histrec);
+	// 		}
+	// 		redirect('/manage');
+	// 	//}
 	// }
+
+	function sellbot($rid){
+		$robots = $this->mrobots->all();
+		foreach ($robots as $robot) 
+		{
+			if($robot->r_id == $rid){
+				$top = $robot->head;
+				$torso = $robot->torso;
+				$legs = $robot->legs;
+		    	$result = $this->mrobots->sellbot($top, $torso, $legs);
+		    	if ($result[0] == 'Ok'){
+		    		$robot->available = 0;
+					$this->mrobots->update($robot);
+					$histrec = array('r_id' => $robot->r_id, 'catagory' => 'shipment');
+					$this->mrhistory->add($histrec);
+		    	}
+			}
+		}
+    	redirect('/manage');
+	}
 }
