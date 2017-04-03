@@ -113,13 +113,13 @@ class MProperties extends MY_Model {
         if($apikey == null)
             $apikey = $this->getApiKey();
         $baseurl = $this->getUrl('goji');
-        $result = file_get_contents('' . $baseurl . $catagory .'/' . $command . '?key=' . $apikey);
+        $result = file_get_contents('' . $baseurl . '/' . $catagory .'/' . $command . '?key=' . $apikey);
         return $result;
     }
 
    public function server_fetch_param($catagory, $command, $param1 = null, $param2 = null, $param3 = null){
         $baseurl = $this->getUrl('goji');
-       $querry = '' . $baseurl . $catagory . '/'. $command;
+       $querry = '' . $baseurl . '/' . $catagory . '/'. $command;
        if($param1 != null){
            $querry .= '/';
            $querry .= $param1;
