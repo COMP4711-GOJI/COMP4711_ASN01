@@ -23,6 +23,7 @@ class Assembly extends Application
 	function __construct()
 	{
 		parent::__construct();
+		$this->data['umbrella'] = 'https://umbrella.jlparry.com';
 	}
 
 	/**
@@ -31,45 +32,120 @@ class Assembly extends Application
 	public function index()
 	{
 		$this->data['pagebody'] = 'assembly';
-		$robots = $this->robots->all();
-		$parts = $this->inventory->all_parts();
 
-		// show all the robots from Robot Model
-		$gallery = '<div class="row">';
-		foreach ($robots as $gridblock) {
-			$gallery .= '<div class="col-lg-4 col-sm-6 col-xs-12">';
-			$gallery .= '<a href="#">';
-			$gallery .= '<img src="./assets/images/bots/';
-			$gallery .= $gridblock['img'];
-			$gallery .= '" class="thumbnail img-responsive">';
-			$gallery .= '</a>';
-			//add a button for delete
-			$gallery .= '<button type="button" class="btn btn-primary btn-radio-sellbot">Sell</button>';
-			$gallery .= '<input type="checkbox" id="sell-robot-button" class="hidden">';
-			$gallery .= '</div>';
+		//$this->mproperties->registerme();
+		$parts = $this->mparts->all();
+		$usedparts = $this->mrobots->all();
+
+		foreach ($parts as $part) 
+		{
+			$img = $part->model . $part->piece;
+
+			if( $part->piece == 1 && $part->available == 1)
+				$topgallery[] = array( 'robotpartimg' => $img , 'topid' => $part->cacode);
+
+			if( $part->piece == 2 && $part->available == 1)
+				$torsogallery[] = array( 'robotpartimg' => $img , 'torsoid' => $part->cacode);
+
+			if( $part->piece == 3 && $part->available == 1)
+				$legsgallery[] = array( 'robotpartimg' => $img , 'legsid' => $part->cacode);
+			
+			// if($part->piece == 1 && 
+			// 	 ! array_search($part->cacode, array_column($usedparts, 'head'))
+			// 	 )
+				
+			// 	$topgallery[] = array( 'robotpartimg' => $part['image'] , 'topid' => $part['CACode']);
+
+			// if($part->piece == 2 && 
+			// 	 ! array_search($part->cacode, array_column($usedparts, 'torso')) )
+				
+			// 	$torsogallery[] = array( 'robotpartimg' => $part['image'] , 'torsoid' => $part['CACode']);
+
+			// if($part->piece == 3 && 
+			// 	 ! array_search($part->cacode, array_column($usedparts, 'legs')))
+				
+			// 	$legsgallery[] = array( 'robotpartimg' => $part['image'] , 'legsid' => $part['CACode']);
+
 		}
-
-		//show all the parts from the inventory
-		$gallery .= '</div>';	
-		foreach ($parts as $gridblock) {
-			$gallery .= '<div class="col-lg-4 col-sm-6 col-xs-12">';
-			$gallery .= '<a href="#">';
-			$gallery .= '<img src="./assets/images/parts/';
-			$gallery .= $gridblock['image'];
-			$gallery .= '" class="thumbnail img-responsive">';
-			$gallery .= '</a>';
-			//add a button for delete
-			$gallery .= '<button type="button" class="btn btn-primary btn-radio-sellpart">Sell</button>';
-			$gallery .= '<input type="checkbox" id="sell-robot-button" class="hidden">';
-			//add a button for select
-			$gallery .= '<button type="button" class="btn btn-primary btn-radio-selectpart">Select</button>';
-			$gallery .= '<input type="checkbox" id="select-part-button" class="hidden">';
-			$gallery .= '</div>';
-		}
-
-		//dispaly it as a grid gallery
-		$this->data['assembly_gallery'] = $gallery;
+		
+		if(empty($topgallery))
+			$topgallery[] = array( 'robotpartimg' => 'ofs' , 'topid' => '-1');
+		if(empty($torsogallery))
+			$torsogallery[] = array( 'robotpartimg' => 'ofs' , 'topid' => '-1');
+		if(empty($legsgallery)){}
+			$legsgallery[] = array( 'robotpartimg' => 'ofs' , 'topid' => '-1');
+		$this->data['assembly_gallery_top'] = $topgallery;
+		$this->data['assembly_gallery_torso'] = $torsogallery;
+		$this->data['assembly_gallery_legs'] = $legsgallery;
 		$this->render();
 	}
+
+	public function assemblebot($top, $torso, $legs)
+	{
+		//$role = $this->session->userdata('userrole');
+		// if(role == ROLE_SUPERVISOR)
+		// {
+
+			// validate the selected parts
+			if( $this->mparts->exists($top)
+				&& $this->mparts->exists($torso)
+				&& $this->mparts->exists($legs))
+			{
+				//make part inaccessible from part table
+				$toprec = $this->mparts->get($top);
+				$torsorec = $this->mparts->get($torso);
+				$legsrec = $this->mparts->get($legs);
+
+				$toprec->available = 0;
+				$torsorec->available = 0;
+				$legsrec->available = 0;
+				
+				$this->mparts->update($toprec);
+				$this->mparts->update($torsorec);
+				$this->mparts->update($legsrec);
+
+				//add a record to your "robots" table, with the chosen parts	
+				$robotrec = array('head' => $top, 'torso' => $torso, 'legs' => $legs, 'available' => 1);
+				$this->mrobots->add($robotrec);
+
+				// update the history table(s)
+				$getrec = $this->mrobots->tail(1);
+				$mostrecentbotrec = reset($getrec);
+				$histrec = array('r_id' => $mostrecentbotrec->r_id, 'catagory' => 'assembly');
+				$this->mrhistory->add($histrec);
+			}
+			
+		//}
+		redirect('/assembly');
+		//$this->index();
+		//$this->render();
+	}
+
+	public function shipbot($bot)
+	{
+		//$role = $this->session->userdata('userrole');
+		//if(role == ROLE_BOSS)
+		//{
+			$server = $this->data['umbrella'] . '/work/buymybot/';
+			
+			$top = "TBD";
+			$torso = "TBD";
+			$legs = "TBD";
+
+			$result = file_get_contents($server . '/' . $top . $torso . $legs);
+			//parse results
+		//}
+	}
+
+	public function recycle($part)
+	{
+		//$role = $this->session->userdata('userrole');
+		//if(role == ROLE_SUPERVISOR)
+		//{
+			$server = $this->data['umbrella'] . '/work/recycle';
+			$result = file_get_contents($server . '/' . $part);
+			//parse results
+		//}
+	}	
 
 }
