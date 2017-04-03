@@ -82,9 +82,9 @@ class Assembly extends Application
 
 	public function assemblebot($top, $torso, $legs)
 	{
-		//$role = $this->session->userdata('userrole');
-		// if(role == ROLE_SUPERVISOR)
-		// {
+		$role = $this->session->userdata('userrole');
+		if(role == ROLE_SUPERVISOR)
+		{
 
 			// validate the selected parts
 			if( $this->mparts->exists($top)
@@ -115,7 +115,7 @@ class Assembly extends Application
 				$this->mrhistory->add($histrec);
 			}
 			
-		//}
+		}
 		redirect('/assembly');
 		//$this->index();
 		//$this->render();
@@ -123,9 +123,9 @@ class Assembly extends Application
 
 	public function shipbot($bot)
 	{
-		//$role = $this->session->userdata('userrole');
-		//if(role == ROLE_BOSS)
-		//{
+		$role = $this->session->userdata('userrole');
+		if(role == ROLE_BOSS)
+		{
 			$server = $this->data['umbrella'] . '/work/buymybot/';
 			
 			$top = "TBD";
@@ -134,18 +134,18 @@ class Assembly extends Application
 
 			$result = file_get_contents($server . '/' . $top . $torso . $legs);
 			//parse results
-		//}
+		}
 	}
 
 	public function recycle($part)
 	{
-		//$role = $this->session->userdata('userrole');
-		//if(role == ROLE_SUPERVISOR)
-		//{
+		$role = $this->session->userdata('userrole');
+		if(role == ROLE_SUPERVISOR)
+		{
 			$server = $this->data['umbrella'] . '/work/recycle';
 			$result = file_get_contents($server . '/' . $part);
 			//parse results
-		//}
+		}
 	}	
 
 }
