@@ -67,16 +67,25 @@ class Assembly extends Application
 			// 	$legsgallery[] = array( 'robotpartimg' => $part['image'] , 'legsid' => $part['CACode']);
 
 		}
-		
+		$bottable = '';	
+		foreach ($usedparts as $bot) 
+		{
+			$robotentry = array('r_id' => $bot->r_id , 'head' => $bot->head , 'torso' => $bot->torso , 'legs' => $bot->legs, 'bot_id' => $bot->r_id  );
+			
+        	$bottable .= $this->parser->parse('oneassembledbot', $robotentry);    
+		}
+
 		if(empty($topgallery))
 			$topgallery[] = array( 'robotpartimg' => 'ofs' , 'topid' => '-1');
 		if(empty($torsogallery))
 			$torsogallery[] = array( 'robotpartimg' => 'ofs' , 'topid' => '-1');
 		if(empty($legsgallery)){}
 			$legsgallery[] = array( 'robotpartimg' => 'ofs' , 'topid' => '-1');
+
 		$this->data['assembly_gallery_top'] = $topgallery;
 		$this->data['assembly_gallery_torso'] = $torsogallery;
 		$this->data['assembly_gallery_legs'] = $legsgallery;
+		$this->data['robottable'] = $bottable;
 		$this->render();
 	}
 
@@ -126,14 +135,17 @@ class Assembly extends Application
 		//$role = $this->session->userdata('userrole');
 		//if(role == ROLE_BOSS)
 		//{
-			$server = $this->data['umbrella'] . '/work/buymybot/';
+			$server = $this->data['umbrella'] . '/work/buymybot';
 			$apik = $this->mproperties->getApiKey();
-			$top = "TBD";
-			$torso = "TBD";
-			$legs = "TBD";
-
-			$result = file_get_contents($server . '/' . $top . $torso . $legs);
-			//parse results
+			$robot = $this->mrobot->get($bot);
+			$result = file_get_contents($server . '/' . $robot->head . '/' . $robot->torso . '/' . $robot->legs . '?key=' . $apik);
+			if ( $res[0] == 'OK')
+			{
+				$robot->available = 0;
+				$this->mrobot->update($rec);
+				$histrec = array('r_id' => $robot->r_id, 'catagory' => 'shipment');
+				$this->mrhistory->add($histrec);
+			}
 			redirect('/assembly');
 		//}
 	}
@@ -161,6 +173,8 @@ class Assembly extends Application
 				$rec = $this->mparts->get($part);
 				$rec->available = 0;
 				$this->mparts->update($rec);
+				$histrec = array('cacode' => $rec->cacode, 'catagory' => 'recycled');
+				$this->mrhistory->add($histrec);
 			}
 
 			//parse results
