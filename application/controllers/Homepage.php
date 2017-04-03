@@ -20,12 +20,6 @@ class Homepage extends Application
 	{
 		$this->data['pagebody'] = 'homepage';
 
-		// $this->mproperties->registerme();
-
-
-		$this->mparts->buybox();
-
-
 		$scoop = $this->mproperties->scoop($GLOBALS['team']);
 
 		$id             = $scoop->id;
