@@ -20,8 +20,8 @@ class Manage extends Application
 	 */
 	public function index()
 	{
-		// $role = $this->session->userdata('userrole');
-	 //    if ($role != ROLE_BOSS) redirect('/manage/notboss');
+		$role = $this->session->userdata('userrole');
+	    if ($role != 'boss') redirect('/manage/notboss');
 
 		// $this->mproperties->registerme();		
 
@@ -47,6 +47,9 @@ class Manage extends Application
 	}
 
 	function notBoss(){
+		$role = $this->session->userdata('userrole');
+		if ($role == 'boss') redirect('/manage');
+		$this->data['pagetitle'] = 'Manage ('. $role .')';
 		$this->data['pagebody'] = 'bossonly';
 		$this->render();
 	}

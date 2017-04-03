@@ -36,7 +36,7 @@
 			<form role="form" action="/manage/config" method="post">
 				<div class="form-group">
 				<label for="plantname1">Plant Name:</label>
-					<input type="text" class="form-control" name="plantname1" id="plantname1">
+					<input type="text" class="form-control" name="plantname1" id="plantname1" value="<?php echo $GLOBALS['team'] ?>">
 				</div>
 				<div class="form-group">
 				<label for="baseurl">Base URL for PRC:</label>
