@@ -12,6 +12,7 @@ class Manage extends Application
 	function __construct()
 	{
 		parent::__construct();
+		$this->data['umbrella'] = 'https://umbrella.jlparry.com';
 	}
 
 	/**
@@ -24,8 +25,14 @@ class Manage extends Application
 
 		// $this->mproperties->registerme();		
 
+		$robots = $this->mrobots->all();
+		foreach ($robots as $robot) 
+		{
+			$robotsbuilt[] = array('robotid' => $robot->r_id, 'head' => $robot->head, 'torso' => $robot->torso, 'legs' => $robot->legs, 'available' => $robot->available);
+		}
 
 		// this is the view we want shown
+		$this->data['robots_built'] = $robotsbuilt;
 		$this->data['pagebody'] = 'manage';
 		$this->render();
 	}
@@ -54,4 +61,21 @@ class Manage extends Application
 		$this->mproperties->updateurl($team, $baseurl);
     	redirect('/manage');
 	}
+
+
+	
+
+	// function sellbot($rid){
+	// 	$robot = $this->mrobots->get($rid);
+	// 	$top = $robot->top;
+	// 	$torso = $robot->torso;
+	// 	$legs = $robots->legs;
+ //    	$result = $this->mrobots->sellbot($top, $torso, $legs);
+ //    	if ($result[1] == 'ok'){
+ //    		$rec = $this->mrobots->get($rid);
+ //    		$rec->available = 0;
+ //    		$this->mrobots->update($rec);
+ //    	}
+ //    	redirect('/manage');
+	// }
 }

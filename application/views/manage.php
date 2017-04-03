@@ -46,7 +46,29 @@
 			</form>
 		</div>
 		<div class="tab-pane" id="4">
-			<h3>add clearfix to tab-content (see the css)</h3>
+			<h3>Sell the available bots</h3>
+			{robots_built}
+			<div>
+			    <table class="table">
+			    	<thead>
+			    		<th>ID</th>
+			    		<th>Head ID</th>
+			    		<th>Torso ID</th>
+			    		<th>Legs ID</th>
+			    		<th>Available</th>
+			    		<th>Sell this bot?</th>
+			    	</thead>
+			    	<tbody>
+			    		<td>{robotid}</td>
+			    		<td>{head}</td>
+			    		<td>{torso}</td>
+			    		<td>{legs}</td>
+			            <td>{available}</td>
+			            <td><a href="/manage/sellbot/{robotid}"><button type="button" class="btn btn-primary btn-radio-makebot">Sell Me!</button><input type="button" class="hidden"/></a></td>
+			    	</tbody>
+			    </table>
+			</div>
+			{/robots_built}
 		</div>
 	</div>
 </div>
