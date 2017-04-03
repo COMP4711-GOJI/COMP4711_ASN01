@@ -44,26 +44,6 @@
 
 <br/><hr/>
 
-<div class="row">
-	<h3>Built Bots</h3>
-	<table class="table">
-		<thead>
-			<th><font color='000'>Id</font></th>
-			<th><font color='000'>Part 1 </font></th>
-			<th><font color='000'>Part 2</font></th>
-			<th><font color='000'>Part 3</font></th>
-			<th><font color='000'>Part 3</font></th>
-		</thead>
-		<tbody>
-			{robottable}
-		</tbody>
-	</table>
-</div>
-<br/>
-<div class="row">
-	<button type="button" id="sellbutton" class="btn btn-primary btn-radio-makebot">Sell Bot!</button>
-	<input type="checkbox" id="make-bot-button" class="hidden">
-</div>
 <script> 
   $(document).ready(function() {
     $("#assemblebotbutton").click(function() {
@@ -137,22 +117,6 @@
 		window.location = './assembly/recycle/' + top + '/' + torso + '/' + legs;
     });
     
-	$("#sellbutton").click(function() {
-    // if (document.getElementsByName('optradio-top').checked
-    //   && document.getElementsByName('optradio-torso').checked
-    //   && document.getElementsByName('optradio-legs').checked) {
-		var bot;
-
-		var botset = document.getElementsByName('optradio-robot');
-		
-		for (var i = 0; i < botset.length; i++) {
-			if (botset[i].type === 'radio' && botset[i].checked) {
-			    // get top, set checked flag or do whatever you need to
-			    bot = botset[i].id;       
-			}
-		}
-		window.location = './assembly/shipbot/' + bot ;
-    });
   });
   // function assemblebotbuttonaction(){
   // }
