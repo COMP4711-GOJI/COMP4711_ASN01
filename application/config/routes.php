@@ -58,3 +58,5 @@ $route['parts']    = 'Parts';
 $route['assembly'] = 'Assembly';
 $route['history']  = 'History';
 $route['part/(:any)'] = 'Parts/part/$1';
+$route['manage'] = 'Manage';
+

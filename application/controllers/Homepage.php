@@ -20,7 +20,6 @@ class Homepage extends Application
 	{
 		$this->data['pagebody'] = 'homepage';
 
-
 		$scoop = $this->mproperties->scoop($GLOBALS['team']);
 
 		$id             = $scoop->id;

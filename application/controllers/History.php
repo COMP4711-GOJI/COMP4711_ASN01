@@ -17,7 +17,7 @@ class History extends Application
 	function __construct()
 	{
 		parent::__construct();
-		$this->mproperties->registerme();
+		// $this->mproperties->registerme();
 	}
 
 	/**

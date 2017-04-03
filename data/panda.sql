@@ -44,7 +44,8 @@ CREATE TABLE `parts` (
 CREATE TABLE `properties` (
   `team` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `apikey` varchar(20) NOT NULL
+  `apikey` varchar(20) NOT NULL,
+  `baseurl` varchar(50) NOT NULL DEFAULT 'https://umbrella.jlparry.com/'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
