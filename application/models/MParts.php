@@ -37,8 +37,6 @@ class MParts extends MY_Model {
 			$historyRecord->category = "build";
 			$this->mphistory->add($historyRecord);
         }
-		
-		
     }
 
 
